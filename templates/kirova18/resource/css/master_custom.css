@@ -1,0 +1,59 @@
+.material-tooltip {
+    display: none !important;
+}
+.toast_success {
+    background-color: green;
+}
+.toast p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.toast_error {
+    background-color: red;
+}
+.add-payment .input-field.filter select {
+    display: inline-block;
+    border: none;
+    padding-bottom: 0;
+    padding-top: 0;
+    height: 36px;
+}
+.add-payment .input-field:first-of-type {
+    margin-right: 25px;
+}
+tr.invoice-modified {
+    background: #e0e0e0 !important;
+}
+.red-text{
+    color: red;
+}
+.green-text{
+    color: green;
+}
+header.no-auth {
+    height: 100px;
+}
+header.no-auth nav {
+    height: 100%;
+}
+#user-auth-wrapper{
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+}
+#user-auth-wrapper .user-auth{
+    width: 320px;
+    margin-top: -100px;
+}
+#user-auth-wrapper .user-auth .input-field {
+    width: 100%;
+}
+.formFieldError {
+    font-size: 12px;
+    color: red;
+}
+tr.ending-soon{
+    background-color: #c27f7f;
+}

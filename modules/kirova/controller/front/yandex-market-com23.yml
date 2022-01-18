@@ -1,0 +1,274 @@
+<yml_catalog date="2022-01-14 11:57">
+<shop>
+<name>ДОСТАВКА ВОДЫ</name>
+<company>Общество с ограниченной ответственностью &quot;Акватория&quot;</company>
+<url>https://com23.ru</url>
+<platform>ReadyScript</platform>
+<currencies>
+<currency id="RUB" rate="1"/>
+</currencies>
+<categories>
+<category id="2">Вода</category>
+</categories>
+<delivery-options>
+<option cost="0" days="1"/>
+</delivery-options>
+<offers>
+<offer id="43" type="vendor.model" available="false">
+<url>https://com23.ru/product/voda-kristalnaya-19-l/</url>
+<price>150.00</price>
+<currencyId>RUB</currencyId>
+<categoryId>2</categoryId>
+<picture>https://com23.ru/storage/photo/resized/axy_800x800/g/tj1fnwwnmfhpsi9_ccd3f341.png.webp</picture>
+<description>Натуральная природная питьевая вода из артезианской скважины</description>
+<typePrefix>Питьевая вода 19 л</typePrefix>
+<vendor>Единая служба доставки питьевой воды</vendor>
+<model>Кристальная</model>
+<sales_notes>Минимальный заказ 2 бутыли</sales_notes>
+<param name="Для детей">нет</param>
+<param name="Для офиса">есть</param>
+<param name="Для школ">нет</param>
+<param name="Для дома">есть</param>
+<param name="Для животных">нет</param>
+</offer>
+<offer id="44" type="vendor.model" available="false">
+<url>https://com23.ru/product/voda-serebryanaya-kaplya-19-l/</url>
+<price>150.00</price>
+<currencyId>RUB</currencyId>
+<categoryId>2</categoryId>
+<picture>https://com23.ru/storage/photo/resized/axy_800x800/d/28va0qf00n04y88_2996d31a.png.webp</picture>
+<description>Натуральная природная питьевая вода с ионами серебра</description>
+<typePrefix>Питьевая вода 19 л</typePrefix>
+<vendor>Единая служба доставки питьевой воды</vendor>
+<model>Серебряная капля</model>
+<sales_notes>Минимальный заказ 2 бутыли</sales_notes>
+<param name="Для детей">нет</param>
+<param name="Для офиса">есть</param>
+<param name="Для школ">нет</param>
+<param name="Для дома">есть</param>
+<param name="Для животных">нет</param>
+</offer>
+<offer id="138" type="vendor.model" available="false">
+<url>https://com23.ru/product/arhyz-19l/</url>
+<price>280.00</price>
+<currencyId>RUB</currencyId>
+<categoryId>2</categoryId>
+<picture>https://com23.ru/storage/photo/resized/axy_800x800/c/97k0kbkftccqa2y_20d0c286.png.webp</picture>
+<description>Горная питьевая вода</description>
+<typePrefix>Питьевая вода 19 л</typePrefix>
+<vendor>Единая служба доставки питьевой воды</vendor>
+<model>Архыз</model>
+<sales_notes>Минимальный заказ 2 бутыли</sales_notes>
+<param name="Для детей">нет</param>
+<param name="Для офиса">есть</param>
+<param name="Для школ">нет</param>
+<param name="Для дома">есть</param>
+<param name="Для животных">нет</param>
+</offer>
+<offer id="141" type="vendor.model" available="false">
+<url>https://com23.ru/product/gornaya-vershina-19l/</url>
+<price>220.00</price>
+<currencyId>RUB</currencyId>
+<categoryId>2</categoryId>
+<picture>https://com23.ru/storage/photo/resized/axy_800x800/f/jxt6zwemfl5n05r_d6f7776f.png.webp</picture>
+<description>Горная питьевая вода</description>
+<typePrefix>Питьевая вода 19 л</typePrefix>
+<vendor>Единая служба доставки питьевой воды</vendor>
+<model>Горная вершина</model>
+<sales_notes>Минимальный заказ 2 бутыли</sales_notes>
+<param name="Для детей">нет</param>
+<param name="Для офиса">есть</param>
+<param name="Для школ">нет</param>
+<param name="Для дома">есть</param>
+<param name="Для животных">нет</param>
+</offer>
+<offer id="142" type="vendor.model" available="false">
+<url>https://com23.ru/product/dombay-19l/</url>
+<price>180.00</price>
+<currencyId>RUB</currencyId>
+<categoryId>2</categoryId>
+<picture>https://com23.ru/storage/photo/resized/axy_800x800/d/ivmhf8kw12omo1k_cb18d45c.png.webp</picture>
+<description>Минеральная природная столовая питьевая вода</description>
+<typePrefix>Питьевая вода 19 л</typePrefix>
+<vendor>Единая служба доставки питьевой воды</vendor>
+<model>Домбай</model>
+<sales_notes>Минимальный заказ 2 бутыли</sales_notes>
+<param name="Для детей">нет</param>
+<param name="Для офиса">есть</param>
+<param name="Для школ">нет</param>
+<param name="Для дома">есть</param>
+<param name="Для животных">нет</param>
+</offer>
+<offer id="143" type="vendor.model" available="false">
+<url>https://com23.ru/product/piligrim-19l/</url>
+<price>240.00</price>
+<currencyId>RUB</currencyId>
+<categoryId>2</categoryId>
+<picture>https://com23.ru/storage/photo/resized/axy_800x800/a/k6ln68ty2yrwkr6_35bbd26f.png.webp</picture>
+<description>Талая ледниковая вода, обогащенная легким водородом</description>
+<typePrefix>Питьевая вода 19 л</typePrefix>
+<vendor>Единая служба доставки питьевой воды</vendor>
+<model>Пилигрим</model>
+<sales_notes>Минимальный заказ 2 бутыли</sales_notes>
+<param name="Для детей">нет</param>
+<param name="Для офиса">есть</param>
+<param name="Для школ">нет</param>
+<param name="Для дома">есть</param>
+<param name="Для животных">нет</param>
+</offer>
+<offer id="207" type="vendor.model" available="false">
+<url>https://com23.ru/product/goryachiy-klyuch-19l/</url>
+<price>150.00</price>
+<currencyId>RUB</currencyId>
+<categoryId>2</categoryId>
+<picture>https://com23.ru/storage/photo/resized/axy_800x800/d/2r489tk2ahckoqx_cacbc070.png.webp</picture>
+<description>артезианская вода первой категории</description>
+<typePrefix>Питьевая вода 19 л</typePrefix>
+<vendor>Единая служба доставки питьевой воды</vendor>
+<model>Горячий ключ</model>
+<sales_notes>Минимальный заказ 2 бутыли</sales_notes>
+<param name="Для детей">нет</param>
+<param name="Для офиса">есть</param>
+<param name="Для школ">есть</param>
+<param name="Для дома">есть</param>
+<param name="Для животных">нет</param>
+</offer>
+<offer id="213" type="vendor.model" available="false">
+<url>https://com23.ru/product/kubay/</url>
+<price>220.00</price>
+<currencyId>RUB</currencyId>
+<categoryId>2</categoryId>
+<picture>https://com23.ru/storage/photo/resized/axy_800x800/a/pzf0mq8lqvmba60_f82e6661.png.webp</picture>
+<description/>
+<typePrefix>Питьевая вода 19 л</typePrefix>
+<vendor>Единая служба доставки питьевой воды</vendor>
+<model>Кубай</model>
+<sales_notes>Минимальный заказ 2 бутыли</sales_notes>
+<param name="Для детей">нет</param>
+<param name="Для офиса">есть</param>
+<param name="Для школ">нет</param>
+<param name="Для дома">есть</param>
+<param name="Для животных">нет</param>
+</offer>
+<offer id="247" type="vendor.model" available="false">
+<url>https://com23.ru/product/prezidium-19-l/</url>
+<price>230.00</price>
+<currencyId>RUB</currencyId>
+<categoryId>2</categoryId>
+<picture>https://com23.ru/storage/photo/resized/axy_800x800/d/g2njqhu5hjatort_ad076f98.png.webp</picture>
+<description>Высококачественная питьевая вода премиум-класса</description>
+<typePrefix>Питьевая вода 19 л</typePrefix>
+<vendor>Единая служба доставки питьевой воды</vendor>
+<model>Президиум</model>
+<sales_notes>Минимальный заказ 2 бутыли</sales_notes>
+<param name="Для детей">нет</param>
+<param name="Для офиса">есть</param>
+<param name="Для школ">нет</param>
+<param name="Для дома">есть</param>
+<param name="Для животных">нет</param>
+</offer>
+<offer id="252" type="vendor.model" available="false">
+<url>https://com23.ru/product/mirabel/</url>
+<price>140.00</price>
+<currencyId>RUB</currencyId>
+<categoryId>2</categoryId>
+<picture>https://com23.ru/storage/photo/resized/axy_800x800/d/rji4bmky1y49kpe_48bab6b8.png.webp</picture>
+<description>Артезианская питьевая вода</description>
+<typePrefix>Питьевая вода 19 л</typePrefix>
+<vendor>Единая служба доставки питьевой воды</vendor>
+<model>Мирабель</model>
+<sales_notes>Минимальный заказ 2 бутыли</sales_notes>
+<param name="Для детей">нет</param>
+<param name="Для офиса">есть</param>
+<param name="Для школ">есть</param>
+<param name="Для дома">есть</param>
+<param name="Для животных">нет</param>
+</offer>
+<offer id="345" type="vendor.model" available="false">
+<url>https://com23.ru/product/elbrusinka-detskaya-19/</url>
+<price>240.00</price>
+<currencyId>RUB</currencyId>
+<categoryId>2</categoryId>
+<picture>https://com23.ru/storage/photo/resized/axy_800x800/c/zie3ros298i0rdf_939eb7fe.png.webp</picture>
+<description>Детская питьевая вода</description>
+<typePrefix>Питьевая вода 19 л</typePrefix>
+<vendor>Единая служба доставки питьевой воды</vendor>
+<model>Эльбрусинка детская</model>
+<sales_notes>Минимальный заказ 2 бутыли</sales_notes>
+<param name="Для детей">есть</param>
+<param name="Для офиса">нет</param>
+<param name="Для школ">есть</param>
+<param name="Для дома">есть</param>
+<param name="Для животных">нет</param>
+</offer>
+<offer id="349" type="vendor.model" available="false">
+<url>https://com23.ru/product/dolina-dzhentau/</url>
+<price>180.00</price>
+<currencyId>RUB</currencyId>
+<categoryId>2</categoryId>
+<picture>https://com23.ru/storage/photo/resized/axy_800x800/g/7ax6z88yenwwx78_b66549f4.png.webp</picture>
+<description>Минеральная природная вода</description>
+<typePrefix>Питьевая вода 19 л</typePrefix>
+<vendor>Единая служба доставки питьевой воды</vendor>
+<model>Долина Джентау</model>
+<sales_notes>Минимальный заказ 2 бутыли</sales_notes>
+<param name="Для детей">нет</param>
+<param name="Для офиса">есть</param>
+<param name="Для школ">нет</param>
+<param name="Для дома">есть</param>
+<param name="Для животных">нет</param>
+</offer>
+<offer id="377" type="vendor.model" available="false">
+<url>https://com23.ru/product/erivan/</url>
+<price>200.00</price>
+<currencyId>RUB</currencyId>
+<categoryId>2</categoryId>
+<picture>https://com23.ru/storage/photo/resized/axy_800x800/d/l0nw6qfh7hc4v46_9124e369.png.webp</picture>
+<description>Минеральная питьевая столовая вода премиум-класса</description>
+<typePrefix>Питьевая вода 19 л</typePrefix>
+<vendor>Единая служба доставки питьевой воды</vendor>
+<model>Эривань</model>
+<sales_notes>Минимальный заказ 2 бутыли</sales_notes>
+<param name="Для детей">нет</param>
+<param name="Для офиса">есть</param>
+<param name="Для школ">нет</param>
+<param name="Для дома">есть</param>
+<param name="Для животных">нет</param>
+</offer>
+<offer id="400" type="vendor.model" available="false">
+<url>https://com23.ru/product/pochemuchka/</url>
+<price>180.00</price>
+<currencyId>RUB</currencyId>
+<categoryId>2</categoryId>
+<picture>https://com23.ru/storage/photo/resized/axy_800x800/g/asnm7n45rrysz9s_dc9e8332.png.webp</picture>
+<description>питьевая вода для детей</description>
+<typePrefix>Питьевая вода 19 л</typePrefix>
+<vendor>Единая служба доставки питьевой воды</vendor>
+<model>Почемучка</model>
+<sales_notes>Минимальный заказ 2 бутыли</sales_notes>
+<param name="Для детей">есть</param>
+<param name="Для офиса">нет</param>
+<param name="Для школ">есть</param>
+<param name="Для дома">есть</param>
+<param name="Для животных">нет</param>
+</offer>
+<offer id="592" type="vendor.model" available="false">
+<url>https://com23.ru/product/gornyy-vozduh/</url>
+<price>270.00</price>
+<currencyId>RUB</currencyId>
+<categoryId>2</categoryId>
+<picture>https://com23.ru/storage/photo/resized/axy_800x800/e/3k97vec4vce0jiw_29a698dd.png.webp</picture>
+<description/>
+<typePrefix>Питьевая вода 19 л</typePrefix>
+<vendor>Единая служба доставки питьевой воды</vendor>
+<model>Горный воздух</model>
+<sales_notes>Минимальный заказ 2 бутыли</sales_notes>
+<param name="Для детей">нет</param>
+<param name="Для офиса">есть</param>
+<param name="Для школ">нет</param>
+<param name="Для дома">есть</param>
+<param name="Для животных">нет</param>
+</offer>
+</offers>
+</shop>
+</yml_catalog>
