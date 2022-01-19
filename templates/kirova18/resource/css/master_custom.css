@@ -81,3 +81,10 @@ tr.ending-soon{
     background: #fff;
     min-width: 320px;
 }
+.renter-login-data tbody td {
+    padding: 5px 10px;
+    border: 1px solid black;
+}
+.renter-login-data table{
+    border-collapse: collapse;
+}

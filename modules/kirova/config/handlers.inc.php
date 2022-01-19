@@ -143,6 +143,9 @@ class Handlers extends HandlerAbstract
         $routes[] = new RouterRoute('kirova-front-renterreport', '/renter-report/', [
             'controller' => 'kirova-front-renterreport'
         ], 'Акт сверки');
+        $routes[] = new RouterRoute('kirova-front-renterlogindata', '/renter-logindata/', [
+            'controller' => 'kirova-front-renterlogindata'
+        ], 'Данные арендаторов для входа');
         return $routes;
     }
 
