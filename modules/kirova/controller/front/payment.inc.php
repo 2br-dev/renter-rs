@@ -166,4 +166,29 @@ class Payment extends Front
         $this->result->addSection('payments', $payments);
         return $this->result;
     }
+
+    public function actionGetAddPaymentPopup()
+    {
+        $contract_id = $this->url->request('id', TYPE_INTEGER);
+        $contract = new \Kirova\Model\Orm\Contract($contract_id);
+        $renter = new \Kirova\Model\Orm\Renter($contract['renter']);
+        $this->view->assign([
+            'contract_id' => $contract_id,
+            'renter' => $renter
+        ]);
+        return $this->result->setTemplate('%kirova%/add-payment-popup.tpl');
+    }
+
+    public function actionGetListPaymentPopup()
+    {
+        $contract_id = $this->url->request('id', TYPE_INTEGER);
+        $contract = new \Kirova\Model\Orm\Contract($contract_id);
+        $payments = $contract->getAllPayments();
+        $renter = new \Kirova\Model\Orm\Renter($contract['renter']);
+        $this->view->assign([
+            'renter' => $renter,
+            'payments' => $payments
+        ]);
+        return $this->result->setTemplate('%kirova%/list-payment-popup.tpl');
+    }
 }

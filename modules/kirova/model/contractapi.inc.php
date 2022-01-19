@@ -77,6 +77,17 @@ class ContractApi extends EntityList
         return $invoice;
     }
 
+    /**
+     * Выставляет счет для договора
+     * @param $contracts_id
+     * @param $next_number
+     * @param $date
+     * @param $period_month
+     * @param $period_year
+     * @param $config
+     * @param $custom_sum
+     * @return bool
+     */
     public function generateInvoice($contracts_id, $next_number, $date, $period_month, $period_year, $config, $custom_sum)
     {
         $success = false;

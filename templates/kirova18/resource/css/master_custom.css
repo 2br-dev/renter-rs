@@ -57,3 +57,27 @@ header.no-auth nav {
 tr.ending-soon{
     background-color: #c27f7f;
 }
+.green-mdi{
+    color: green !important;
+}
+.red-mdi{
+    color: red !important;
+}
+.payment-popup {
+    padding: 20px;
+    background: #fff;
+    min-width: 320px;
+}
+.datepicker-modal {
+    z-index: 9999 !important;
+}
+.list-payment-popup {
+    padding: 20px;
+    background: #fff;
+    min-width: 320px;
+}
+.list-invoice-popup {
+    padding: 20px;
+    background: #fff;
+    min-width: 320px;
+}

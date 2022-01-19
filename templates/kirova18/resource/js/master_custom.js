@@ -136,14 +136,14 @@ $(document).ready(function(){
 
     $('#print-form-submit').on('click', selectInvoices); // отфильтровать счета по выбранным параметрам
     $('#auth-renter-submit').on('click', authRenter);
-    $('#add-payment').on('click', addPayment); // добавление в бд оплаты
+    $('body').on('click', '#add-payment', addPayment); // добавление в бд оплаты
     $('body').on('click', '.remove-invoice',  removeInvoice); // удаление счета
     $('body').on('click', '#payment-filter-submit', paymentFilter);
     $('body').on('click', '#payment-filter-reset', paymentFilterReset);
     $('body').on('click', '.refresh-balance', refreshBalance);
     $('body').on('click', '.check-last-invoice', checkLastInvoice);
+    $('body').on('click', '.generate-last-invoice', generateLastInvoice);
 });
-
 
 /**
  * Отображает договоры по выбранному арендатору из поля автозаполнения
@@ -438,6 +438,51 @@ function checkLastInvoice(e){
         },
         error: function(err){
             console.error(err);
+        }
+    });
+}
+
+function generateLastInvoice(e) {
+    if(e !== 'undefined'){
+        e.preventDefault();
+    }
+    $.ajax({
+        url: $(this).data('url'),
+        type: 'POST',
+        dataType: 'JSON',
+        data: {
+            id: $(this).data('id')
+        },
+        success: function(res){
+            if(!res.success){
+                if(res.error === 'date'){
+                    M.toast({html: '<p>Не указана дата</p>', classes: 'toast_error'});
+                }
+                if(res.error === 'period_month'){
+                    M.toast({html: '<p>Укажите месяц</p>', classes: 'toast_error'});
+                }
+                if(res.error === 'period_year'){
+                    M.toast({html: '<p>Укажите год</p>', classes: 'toast_error'});
+                }
+                if(res.error === 'contracts'){
+                    M.toast({html: '<p>Не выбран договор</p>', classes: 'toast_error'});
+                }
+                if(res.error === 'same'){
+                    M.toast({html: '<p>' + res.same_renter + ' уже есть</p>', classes: 'toast_error', displayLength: 7000});
+                }
+            }else{
+                M.toast({html: '<p>Счет выставлены</p>', classes: 'toast_success'});
+                $('#contract-balance-'+res.id+'').text(res.balance+'₽');
+                if(res.balance < 0){
+                    $('#contract-balance-'+res.id+'').removeClass('green-text').addClass('red-text');
+                }
+                $('#generate-last-invoice-'+res.id+'').removeAttr('title class data-id data-url');
+                $('#generate-last-invoice-'+res.id+' .mdi').removeClass('red-mdi').addClass('green-mdi');
+            }
+        },
+        error: function(err){
+            console.error(err);
+            M.toast({html: '<p>Произошла ошибка</p>', classes: 'toast_error'});
         }
     });
 }

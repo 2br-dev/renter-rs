@@ -148,10 +148,43 @@ class Contracts extends Front
         return $this->result;
     }
 
-    public function actionGenereateLastInvoice()
+    /**
+     * Выставляет счет за текущий месяц
+     * @return \RS\Controller\Result\Standard
+     */
+    public function actionGenerateLastInvoice()
     {
         $id = $this->request('id', TYPE_INTEGER);
-        $data =
+        $date = strtotime(date('Y').'-'.date('m').'-01');
         $contract_api = new \Kirova\Model\ContractApi();
+        $invoice_api = new \Kirova\Model\InvoiceApi();
+        $last_invoice = $invoice_api->getLast();
+        $next_number = $last_invoice['number'] + 1;
+        $error = '';
+        $success = false;
+        $config = \RS\Config\Loader::byModule('kirova');
+        $same = $same = $config->checkTheSameInvoices([$id], date('m'), date('Y'));
+        $same_renter = ''; // Те арендаторы которым были уже выставленные счета за выбранный период
+        if($same != ''){
+            $error = 'same';
+            $success = false;
+            foreach ($same as $item){
+                $renter = new \Kirova\Model\Orm\Renter($item['renter_id']);
+                $same_renter = $same_renter . $renter['short_title'] . ', ';
+            }
+        }
+        if($error == ''){
+            $success = $contract_api->generateInvoice([$id], $next_number, $date, date('m'), date('Y'), $config, null);
+        }
+        if($success){
+            $contract = new \Kirova\Model\Orm\Contract($id);
+            $contract->refreshBalance();
+            $balance = $contract->getBalance();
+        }
+        $this->result->setSuccess($success);
+        $this->result->addSection('error', $error);
+        $this->result->addSection('id', $id);
+        $this->result->addSection('balance', $balance);
+        return $this->result;
     }
 }

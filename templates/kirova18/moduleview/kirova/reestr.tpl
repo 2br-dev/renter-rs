@@ -56,7 +56,7 @@
                                                 <td>{$contract['renter_short_title']}</td>
                                                 <td>{$contract['sum']}({$contract['sum_discount']})₽</td>
                                                 <td id="contract-balance-{$contract['id']}" class="{if $contract['balance'] >= 0}green-text{else}red-text{/if}">{$contract['balance']}₽</td>
-                                                <td>
+                                                <td id="action-{$contract['id']}">
                                                     <a
                                                         class="refresh-balance"
                                                         data-id="{$contract['id']}"
@@ -65,21 +65,41 @@
                                                     >
                                                         <i class="mdi mdi-restore"></i>
                                                     </a>
+                                                    {if $contract['last-invoice']}
+                                                        <a title="Счет за текущий месяц выставлен">
+                                                            <i class="mdi mdi-book-check green-mdi"></i>
+                                                        </a>
+                                                    {else}
+                                                        <a
+                                                                title="счет за текущий месяц не выставлен"
+                                                                class="generate-last-invoice"
+                                                                data-id="{$contract['id']}"
+                                                                data-url="{$router->getUrl('kirova-front-contracts', ["Act" => 'generateLastInvoice'])}"
+                                                                id="generate-last-invoice-{$contract['id']}"
+                                                        >
+                                                            <i class="mdi mdi-book-check red-mdi"></i>
+                                                        </a>
+                                                    {/if}
                                                     <a
-                                                        title="выставлен ли счет за текущий месяц"
-                                                        class="check-last-invoice"
-                                                        data-id="{$contract['id']}"
-                                                        data-url="{$router->getUrl('kirova-front-contracts', ["Act" => 'checkLastInvoice'])}"
+                                                        title="внести оплату"
+                                                        class="rs-in-dialog"
+                                                        data-url="{$router->getUrl('kirova-front-payment', ['Act' => 'getAddPaymentPopup', 'id' => {$contract['id']}])}"
                                                     >
-                                                        <i class="mdi mdi-book-check"></i>
+                                                        <i class="mdi mdi-cash-plus"></i>
                                                     </a>
                                                     <a
-                                                        title="Выставить счет за текущий месяц"
-                                                        class="generate-last-invoic"
-                                                        data-id="{$contract['id']}"
-                                                        data-url="{$router->getUrl('kirova-front-contracts', ['Act' => 'generateLastInvoice'])}"
+                                                            title="список оплат"
+                                                            class="rs-in-dialog"
+                                                            data-url="{$router->getUrl('kirova-front-payment', ['Act' => 'getListPaymentPopup', 'id' => {$contract['id']}])}"
                                                     >
-                                                        <i class="mdi mdi-file-outline"></i>
+                                                        <i class="mdi mdi-cash-check"></i>
+                                                    </a>
+                                                    <a
+                                                            title="список счетов"
+                                                            class="rs-in-dialog"
+                                                            data-url="{$router->getUrl('kirova-front-invoice', ['Act' => 'getListInvoicePopup', 'id' => {$contract['id']}])}"
+                                                    >
+                                                        <i class="mdi mdi-playlist-check"></i>
                                                     </a>
                                                 </td>
                                             </tr>

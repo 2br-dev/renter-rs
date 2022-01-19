@@ -4,3 +4,5 @@
 /templates/flatlines
 /templates/perfume
 /.idea
+/config.auto.php
+/test.php

@@ -189,4 +189,58 @@ class Invoice extends Front
         return $this->result;
     }
 
+    public function actionGetListInvoicePopup()
+    {
+        $contract_id = $this->url->request('id', TYPE_INTEGER);
+        $contract = new \Kirova\Model\Orm\Contract($contract_id);
+        $invoices = $contract->getAllInvoices();
+        $renter = new \Kirova\Model\Orm\Renter($contract['renter']);
+        foreach ($invoices as $key => $value){
+            switch ($value['period_month']){
+                case '01':
+                    $invoices[$key]['period_month_string'] = 'Январь';
+                    break;
+                case '02':
+                    $invoices[$key]['period_month_string'] = 'Февраль';
+                    break;
+                case '03':
+                    $invoices[$key]['period_month_string'] = 'Март';
+                    break;
+                case '04':
+                    $invoices[$key]['period_month_string'] = 'Апрель';
+                    break;
+                case '05':
+                    $invoices[$key]['period_month_string'] = 'Май';
+                    break;
+                case '06':
+                    $invoices[$key]['period_month_string'] = 'Июнь';
+                    break;
+                case '07':
+                    $invoices[$key]['period_month_string'] = 'Июль';
+                    break;
+                case '08':
+                    $invoices[$key]['period_month_string'] = 'Август';
+                    break;
+                case '09':
+                    $invoices[$key]['period_month_string'] = 'Сентябрь';
+                    break;
+                case '10':
+                    $invoices[$key]['period_month_string'] = 'Октябрь';
+                    break;
+                case '11':
+                    $invoices[$key]['period_month_string'] = 'Ноябрь';
+                    break;
+                case '12':
+                    $invoices[$key]['period_month_string'] = 'Декабрь';
+                    break;
+            }
+        }
+        $this->view->assign([
+            'renter' => $renter,
+            'invoices' => $invoices,
+            'contract' => $contract
+        ]);
+        return $this->result->setTemplate('%kirova%/list-invoice-popup.tpl');
+    }
+
 }
