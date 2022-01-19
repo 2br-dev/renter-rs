@@ -1,5 +1,5 @@
 {if $is_auth}
-    {$users = \RS\Application\Auth::getCurrentUser()}
+    {$user = \RS\Application\Auth::getCurrentUser()}
     {if $user['is_admin']}
         <header>
             <nav>
