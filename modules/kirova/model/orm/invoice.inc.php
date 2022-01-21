@@ -45,6 +45,10 @@ class Invoice extends OrmObject
             'is_discount' => new Type\Integer([
                 'description' => t('Со скидкой?')
             ]),
+            'forced_discount' => new Type\Integer([
+                'description' => t('Принудительно со скидкой'),
+                'default' => 0
+            ]),
             'is_modified' => new Type\Integer([
                 'description' => t('Модифицирован?')
             ]),

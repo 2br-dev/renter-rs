@@ -92,6 +92,15 @@
                                                     </ul>
                                                 </li>
                                             </ul>
+                                            <a
+                                                title="Принудительно со скидкой"
+                                                data-url="{$router->getUrl('kirova-front-invoice', ['Act' => 'forcedDiscount', 'id' => $invoice['id']])}"
+                                                data-id="{$invoice['id']}"
+                                                id="forced-discount-{$invoice['id']}"
+                                                class="forced-discount"
+                                            >
+                                                <i class="mdi mdi-cash-lock"></i>
+                                            </a>
                                         </td>
                                     </tr>
                                 {/foreach}
@@ -164,6 +173,15 @@
                                 </ul>
                             </li>
                         </ul>
+                        <a
+                                title="Принудительно со скидкой"
+                                data-url="/invoices/?Act=forcedDiscount&id={{id}}"
+                                data-id="{{id}}"
+                                id="forced-discount-{{id}}"
+                                class="forced-discount"
+                        >
+                            <i class="mdi mdi-cash-lock"></i>
+                        </a>
                     </td>
                 </tr>
             {{else}}

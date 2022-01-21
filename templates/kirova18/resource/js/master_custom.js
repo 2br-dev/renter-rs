@@ -143,6 +143,7 @@ $(document).ready(function(){
     $('body').on('click', '.refresh-balance', refreshBalance);
     $('body').on('click', '.check-last-invoice', checkLastInvoice);
     $('body').on('click', '.generate-last-invoice', generateLastInvoice);
+    $('body').on('click', '.forced-discount', invoiceForcedDiscount)
 });
 
 /**
@@ -478,6 +479,29 @@ function generateLastInvoice(e) {
                 }
                 $('#generate-last-invoice-'+res.id+'').removeAttr('title class data-id data-url');
                 $('#generate-last-invoice-'+res.id+' .mdi').removeClass('red-mdi').addClass('green-mdi');
+            }
+        },
+        error: function(err){
+            console.error(err);
+            M.toast({html: '<p>Произошла ошибка</p>', classes: 'toast_error'});
+        }
+    });
+}
+
+function invoiceForcedDiscount(e){
+    if(e !== 'undefined'){
+        e.preventDefault();
+    }
+    $.ajax({
+        url: $(this).data('url'),
+        type: 'POST',
+        data: {id: $(this).data('id')},
+        success: function(res){
+            console.log(res);
+            if(res.success){
+                M.toast({html: '<p>Счет обновлен. Принудительно со скидкой</p>', classes: 'toast_success'});
+            }else{
+                M.toast({html: '<p>Произошла ошибка</p>', classes: 'toast_error'});
             }
         },
         error: function(err){

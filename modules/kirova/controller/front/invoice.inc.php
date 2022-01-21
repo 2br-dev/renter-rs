@@ -243,4 +243,23 @@ class Invoice extends Front
         return $this->result->setTemplate('%kirova%/list-invoice-popup.tpl');
     }
 
+    /**
+     * Переводит счет в статус - принудительно со скидкой
+     * @return \RS\Controller\Result\Standard
+     */
+    public function actionForcedDiscount()
+    {
+        $invoice_id = $this->url->request('id', TYPE_INTEGER);
+        $success = false;
+        $invoice = new \Kirova\Model\Orm\Invoice($invoice_id);
+        $sum_discount = $invoice['discount_sum'];
+        $invoice['forced_discount'] = 1;
+        $invoice['is_discount'] = 1;
+        $invoice['sum'] = $sum_discount;
+        $success = $invoice->update();
+        $this->result->setSuccess($success);
+        $this->result->addSection('id', $invoice_id);
+        return $this->result;
+    }
+
 }

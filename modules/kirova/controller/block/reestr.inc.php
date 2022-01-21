@@ -90,6 +90,12 @@ class Reestr extends StandartBlock
                 $rooms[] = $room['number'];
             }
             $active_contracts[$key]['rooms'] = $rooms;
+            $invoice = $contract_api->checkLastInvoice($value['id']);
+            if($invoice){
+                $active_contracts[$key]['last-invoice'] = true;
+            }else{
+                $active_contracts[$key]['last-invoice'] = false;
+            }
         }
         $this->view->assign('active_contracts', $active_contracts);
         $current_user = \RS\Application\Auth::getCurrentUser();
