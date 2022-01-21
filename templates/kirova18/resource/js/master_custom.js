@@ -496,12 +496,12 @@ function invoiceForcedDiscount(e){
         url: $(this).data('url'),
         type: 'POST',
         data: {id: $(this).data('id')},
+        dataType: 'JSON',
         success: function(res){
-            console.log(res);
             if(res.success){
                 M.toast({html: '<p>Счет обновлен. Принудительно со скидкой</p>', classes: 'toast_success'});
             }else{
-                M.toast({html: '<p>Произошла ошибка</p>', classes: 'toast_error'});
+                M.toast({html: '<p>Произошла ошибка11</p>', classes: 'toast_error'});
             }
         },
         error: function(err){
