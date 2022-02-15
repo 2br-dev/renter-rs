@@ -196,7 +196,7 @@
                             <td style="width: 90px; border: 1px solid #000000; border-top: none;"><input type="text" value="{$item['discount']}"></td>
                         </tr>
                     {else}
-                        {if $disccount}
+                        {if $discount}
                             <tr>
                                 <td style="text-align: right; font-weight: bold; border: none;">Скидка:</td>
                                 <td style="width: 90px; border: 1px solid #000000; border-top: none;"><input type="text" value="{$item['discount']}"></td>

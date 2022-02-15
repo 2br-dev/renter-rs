@@ -215,8 +215,17 @@ class Contract extends OrmObject
         $info = [];
         $start_balance_inc = false; // Прибавлен ли к оплатам стартовый баланс
 
+        // $current_month = date('m');
+        // $current_year = date('Y');
+        // $already_exposed = false;
+        // $config = \RS\Config\Loader::byModule('kirova');
+        // $is_discount = false;
+
         foreach($invoices as $key_invoice => $invoice){
             $last_day = date('t', strtotime($invoice['period_year'].'-'.$invoice['period_month'].'-01'));
+            if(($invoice['period_month'] == $current_month) && ($invoice['period_year'] == $current_year)){
+                $already_exposed = true;
+            }
             if(!empty($payments)){
                 foreach($payments as $key_payment => $payment){
 //                    $log['payment'][] = print_r($payment['date'], true);
@@ -268,6 +277,42 @@ class Contract extends OrmObject
 //                    break;
                 }
             }
+
+             // есил итерация по счетам последняя и оплат больше по количеству чем счетов - плюсуем credit
+            if ($key_invoice === (count($invoices) - 1) ){
+
+                // if($already_exposed){
+
+                //     $invoice_api = new \Kirova\Model\InvoiceApi();
+                //     $last_invoice = $invoice_api->setFilter('period_month', $current_month)
+                //         ->setFilter('period_year', $current_year)
+                //         ->setFilter('renter_id', $this['renter'])
+                //         ->getFirst();
+                //     // Проверяем условие - если текущий день уже после дня для представления скидки
+                //     if(intval(date('d')) > $config['day_with_discount']){
+                //         // Проверяем условие если баланс положительный то скидка все равно будет предоставлена
+                //         if($contract['balance'] >= 0){
+                //             $is_discount = true;
+                //         }else{
+                //             $is_discount = false;
+                //         }
+                //     }else{
+                //         // Если счет за последний месяц выставлен и баланс отрицателен на сумму счета без скидки
+                //         if(($this['balance'] < 0) && ($this['balance'] + $last_invoice['sum'] >= 0)){
+                //             $is_discount = true;
+                //         }
+                //         if($this['balance'] > 0){
+                //             $is_discount = true;
+                //         }
+                //     }
+                // }
+                if(!empty($payments)){
+                   foreach ($payments as $key => $value){
+                        $credit += $value['sum'];
+                    } 
+                }                
+            }
+            
             if($trigger){
                 $debit += $invoice['discount_sum'];
 //                $info[$invoice['period_month']] = $invoice['discount_sum'];
@@ -282,23 +327,20 @@ class Contract extends OrmObject
                     $invoice['is_discount'] = 0;
                 }
             }
-            // есил итерация по счетам последняя и оплат больше по количеству чем счетов - плюсуем credit
-            if ($key_invoice === (count($invoices) - 1) && !empty($payments)){
-                foreach ($payments as $key => $value){
-                    $credit += $value['sum'];
-                }
-            }
-//            $info['saldo'][] = $saldo.' - '.$credit. ' - ' .$debit;
-//            $info['trigger'][] = $trigger;
-//            $info['finish'][] = $invoice['period_month'] .' - '. $invoice['finish_discount'];
+
+           // $info['saldo'][] = $saldo.' - '.$credit. ' - ' .$debit;
+           // $info['trigger'][] = $trigger;
+           $info['is_discount'][] = $is_discount;
+           $info['already_exposed'][] = $already_exposed;
+           // $info['finish'][] = $invoice['period_month'] .' - '. $invoice['finish_discount'];
             $saldo = $credit - $debit;
             $trigger = false;
             $invoice->update();
 
         }
-//        echo '<pre>';
-//        var_dump($info);
-//        exit();
+       // echo '<pre>';
+       // var_dump($info);
+       // exit();
         $this['balance'] = $saldo;
         $this->update();
     }
@@ -333,10 +375,29 @@ class Contract extends OrmObject
                 ->exec()->fetchRow();
         }
         if(!empty($dop)){
-            if($period_month >= date('m', strtotime($dop['date_start_additional']))
-                && $period_year >= date('Y', strtotime($dop['date_start_additional']))){
+
+            // var_dump($period_month);
+            // var_dump($period_year);
+            // var_dump(date('m', strtotime($dop['date_start_additional'])));
+            // var_dump(date('Y', strtotime($dop['date_start_additional'])));
+
+            if($period_year > date('Y', strtotime($dop['date_start_additional']))){
                 return $dop;
+            }elseif($period_year == date('Y', strtotime($dop['date_start_additional']))){
+                if($period_month >= date('m', strtotime($dop['date_start_additional']))){
+                    return $dop;        
+                }
             }
+
+
+            // var_dump($period_month >= date('m', strtotime($dop['date_start_additional']))
+            //     && $period_year >= date('Y', strtotime($dop['date_start_additional'])));
+            // exit();
+
+            // if($period_month >= date('m', strtotime($dop['date_start_additional']))
+            //     && $period_year >= date('Y', strtotime($dop['date_start_additional']))){
+            //     return $dop;
+            // }
         }
         return false;
     }

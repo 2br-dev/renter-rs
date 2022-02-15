@@ -31,7 +31,7 @@ class Contracts extends Front
 
         $invoices = $contract->getAllInvoices();
         $payments = $contract->getAllPayments(true);
-
+        
         $credit = 0;
         $debit = 0;
         $saldo = 0;
@@ -40,13 +40,30 @@ class Contracts extends Front
         $info = [];
         $start_balance_inc = false; // Прибавлен ли к оплатам стартовый баланс
 
+        $temp = 0;
+        $current_month = date('m');
+        $current_year = date('Y');
+        $already_exposed = false; // Выставлен ли счет за текущий месяц и год
+
+        $config = \RS\Config\Loader::byModule('kirova');
+
         foreach($invoices as $key_invoice => $invoice){
+            // Последний день месяца (выставленного счета)
             $last_day = date('t', strtotime($invoice['period_year'].'-'.$invoice['period_month'].'-01'));
+            if(($invoice['period_month'] == $current_month) && ($invoice['period_year'] == $current_year)){
+                $already_exposed = true;
+            }
+
             if(!empty($payments)){
                 foreach($payments as $key_payment => $payment){
+                    // echo "<pre>";
+                    // var_dump(strtotime($invoice['period_year'].'-'.$invoice['period_month'].'-'.$last_day));
+                    // var_dump(strtotime($payment['date']));
 //                    $log['payment'][] = print_r($payment['date'], true);
 //                    $log['invoice'][] = print_r($invoice['date'], true);
 //                    file_put_contents(\Setup::$PATH . '/log.txt', print_r($log, true) . PHP_EOL, FILE_APPEND);
+                    
+                    // ????
                     if((strtotime($invoice['period_year'].'-'.$invoice['period_month'].'-'.$last_day) <= strtotime($payment['date']))
                         )
                     {
@@ -84,6 +101,8 @@ class Contracts extends Front
                         }
                     }
                     unset($payments[$key_payment]);
+
+                    // ????
                     if($payment['sum'] >= $invoice['sum'] && !$trigger ){
                         break;
                     }
@@ -92,6 +111,19 @@ class Contracts extends Front
                     }
 //                    break;
                 }
+            }
+            // есил итерация по счетам последняя и оплат больше по количеству чем счетов - плюсуем credit
+            if ($key_invoice === (count($invoices) - 1) && !empty($payments)){                
+                foreach ($payments as $key => $value){
+                    $credit += $value['sum'];
+                    $last_pament_date = intval(date('d', strtotime($value['date'])));
+                }
+                //Если последний счет выставлен и последняя оплата до 05 числа и сумма покрывает долг. без послднего месяца + послед. счет со скидкой
+                if($already_exposed && ($debit + $invoice['sum'] >= 0) && ($last_pament_date <= $config['day_with_discount'])){
+                    $trigger = true;
+                }else{
+                    $trigger = false;
+                }                
             }
             if($trigger){
                 $debit += $invoice['discount_sum'];
@@ -107,12 +139,7 @@ class Contracts extends Front
                     $invoice['is_discount'] = 0;
                 }
             }
-            // есил итерация по счетам последняя и оплат больше по количеству чем счетов - плюсуем credit
-            if ($key_invoice === (count($invoices) - 1) && !empty($payments)){
-                foreach ($payments as $key => $value){
-                    $credit += $value['sum'];
-                }
-            }
+            
             $info['saldo'][] = $saldo.' - '.$credit. ' - ' .$debit;
             $info['trigger'][] = $trigger;
             $info['finish'][] = $invoice['period_month'] .' - '. $invoice['finish_discount'];
@@ -121,9 +148,9 @@ class Contracts extends Front
             $invoice->update();
 
         }
-//        echo '<pre>';
-//        var_dump($info);
-//        exit();
+       // echo '<pre>';
+       // var_dump($info);
+       // exit();
         $contract['balance'] = $saldo;
         $contract->update();
         $this->result->addSection('balance', $saldo);

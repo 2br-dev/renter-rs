@@ -68,9 +68,52 @@ class Renter extends StandartBlock
             }
 
         }
+
+        $current_month = date('m');
+        $current_year = date('Y');
+        $already_exposed = false;
+        $invoices = $contract->getAllInvoices();
+        foreach ($invoices as $key => $value){
+            if(($value['period_month'] == $current_month) && ($value['period_year'] == $current_year)){
+                $already_exposed = true;
+            }
+        }
+        $config = \RS\Config\Loader::byModule('kirova');
+        $is_discount = false;
+        $invoice_api = new \Kirova\Model\InvoiceApi();
+        $last_invoice = $invoice_api->setFilter('period_month', $current_month)
+                        ->setFilter('period_year', $current_year)
+                        ->setFilter('renter_id', $contract['renter'])
+                        ->getFirst();
+        //Проверяем выставлен ли уже счет за текущий месяц
+        $fake_balance = 0;
+        if($already_exposed){
+            // Проверяем условие - если текущий день уже после дня для представления скидки
+            if(intval(date('d')) > $config['day_with_discount']){
+                // Проверяем условие если баланс положительный то скидка все равно будет предоставлена
+                if($contract['balance'] >= 0){
+                    $is_discount = true;
+                }else{
+                    $is_discount = false;
+                }
+            }else{
+                // Если счет за последний месяц выставлен и баланс отрицателен на сумму счета без скидки
+                if(($contract['balance'] < 0)){
+                    $is_discount = true;
+                    $fake_balance = $contract['balance'] + ($last_invoice['sum'] - $last_invoice['discount_sum']);
+                }
+                if($contract['balance'] > 0){
+                    $is_discount = true;
+                }
+            }
+        }
+
         $this->view->assign([
             'renter' => $renter,
-            'contract' => $contract
+            'contract' => $contract,
+            'is_discount' => $is_discount,
+            'already_exposed' => $already_exposed,
+            'fake_balance' => $fake_balance
         ]);
         return $this->result->setTemplate($this->getParam('indexTemplate'));
     }

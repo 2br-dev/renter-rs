@@ -91,6 +91,11 @@ class RenterInvoice extends Front
                 }
             }
         }
+        // echo '<pre>';
+        // var_dump($already_exposed);
+        // var_dump($is_discount);
+        // var_dump($invoices);
+        // exit();
         $this->view->assign('user', $current_user);
         $this->view->assign('invoices', $invoices);
         $this->view->assign([

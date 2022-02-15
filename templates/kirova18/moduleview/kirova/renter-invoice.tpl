@@ -23,7 +23,9 @@
                             {foreach $invoices as $invoice}
                                 {if $already_exposed && ($invoice['period_month'] == $current_month && $invoice['period_year'] == $current_year)}
                                     <tr id="invoice-row-{$invoice['id']}" {if $invoice['is_modified']}class="invoice-modified"{/if}>
-                                        <td class="check-field">{$invoice['number']}{if $invoice['is_modified']}<span> (мод.)</span>{/if}</td>
+                                        <td class="check-field">
+                                            {$invoice['number']}{if $invoice['is_modified']}<span> (мод.)</span>{/if}
+                                        </td>
                                         <td>
                                             {if $invoice['is_modified']}
                                                 {$invoice['sum']}
@@ -51,53 +53,53 @@
                                                             <a>Счёт</a>
                                                             <ul>
                                                                 {if $invoice['is_discount']}
-                                                                    <li><a class="waves-effect" target="_blank" href="/printform-invoice/{$invoice['id']}/?print=0/">Вывод <span class="hide-m-down">документа</span></a></li>
-                                                                    <li><a class="waves-effect" target="_blank" href="/printform-invoice/{$invoice['id']}/?print=1/">с печатью</a></li>
+                                                                    <li><a class="waves-effect" target="_blank" href="/printform-invoice/{$invoice['id']}/?print=0&discount=1/">Вывод <span class="hide-m-down">документа</span></a></li>
+                                                                    <li><a class="waves-effect" target="_blank" href="/printform-invoice/{$invoice['id']}/?print=1&discount=1/">с печатью</a></li>
                                                                 {else}
                                                                     {if $is_discount}
-                                                                        <li><a class="waves-effect" target="_blank" href="/printform-invoice/{$invoice['id']}/?print=0&disc=1/">Вывод <span class="hide-m-down">документа</span></a></li>
-                                                                        <li><a class="waves-effect" target="_blank" href="/printform-invoice/{$invoice['id']}/?print=1&disc=1/">с печатью</a></li>
+                                                                        <li><a class="waves-effect" target="_blank" href="/printform-invoice/{$invoice['id']}/?print=0&discount=1/">Вывод <span class="hide-m-down">документа</span></a></li>
+                                                                        <li><a class="waves-effect" target="_blank" href="/printform-invoice/{$invoice['id']}/?print=1&discount=1/">с печатью</a></li>
                                                                     {else}
-                                                                        <li><a class="waves-effect" target="_blank" href="/printform-invoice/{$invoice['id']}/?print=0&disc=0/">Вывод <span class="hide-m-down">документа</span></a></li>
-                                                                        <li><a class="waves-effect" target="_blank" href="/printform-invoice/{$invoice['id']}/?print=1&disc=0/">с печатью</a></li>
+                                                                        <li><a class="waves-effect" target="_blank" href="/printform-invoice/{$invoice['id']}/?print=0&discount=0/">Вывод <span class="hide-m-down">документа</span></a></li>
+                                                                        <li><a class="waves-effect" target="_blank" href="/printform-invoice/{$invoice['id']}/?print=1&discount=0/">с печатью</a></li>
                                                                     {/if}
                                                                 {/if}
                                                             </ul>
                                                         </li>
-                                                        <li>
+                                                        <!-- <li>
                                                             <a>Акт</a>
                                                             <ul>
                                                                 {if $invoice['is_discount']}
-                                                                    <li><a class="waves-effect" target="_blank" href="/printform-akt/{$invoice['id']}/?print=0/">Вывод <span class="hide-m-down">документа</span></a></li>
-                                                                    <li><a class="waves-effect" target="_blank" href="/printform-akt/{$invoice['id']}/?print=1/">с печатью</a></li>
+                                                                    <li><a class="waves-effect" target="_blank" href="/printform-akt/{$invoice['id']}/?print=0&discount=1/">Вывод <span class="hide-m-down">документа</span></a></li>
+                                                                    <li><a class="waves-effect" target="_blank" href="/printform-akt/{$invoice['id']}/?print=1&discount=1/">с печатью</a></li>
                                                                 {else}
                                                                     {if $is_discount}
-                                                                        <li><a class="waves-effect" target="_blank" href="/printform-akt/{$invoice['id']}/?print=0&disc=1/">Вывод <span class="hide-m-down">документа</span></a></li>
-                                                                        <li><a class="waves-effect" target="_blank" href="/printform-akt/{$invoice['id']}/?print=1&disc=1/">с печатью</a></li>
+                                                                        <li><a class="waves-effect" target="_blank" href="/printform-akt/{$invoice['id']}/?print=0&discount=1/">Вывод <span class="hide-m-down">документа</span></a></li>
+                                                                        <li><a class="waves-effect" target="_blank" href="/printform-akt/{$invoice['id']}/?print=1&discount=1/">с печатью</a></li>
                                                                     {else}
-                                                                        <li><a class="waves-effect" target="_blank" href="/printform-akt/{$invoice['id']}/?print=0&disc=0/">Вывод <span class="hide-m-down">документа</span></a></li>
-                                                                        <li><a class="waves-effect" target="_blank" href="/printform-akt/{$invoice['id']}/?print=1&disc=0/">с печатью</a></li>
+                                                                        <li><a class="waves-effect" target="_blank" href="/printform-akt/{$invoice['id']}/?print=0&discount=0/">Вывод <span class="hide-m-down">документа</span></a></li>
+                                                                        <li><a class="waves-effect" target="_blank" href="/printform-akt/{$invoice['id']}/?print=1&discount=0/">с печатью</a></li>
                                                                     {/if}
                                                                 {/if}
                                                             </ul>
-                                                        </li>
-                                                        <li>
+                                                        </li> -->
+                                                        <!-- <li>
                                                             <a>Счёт-фактура</a>
                                                             <ul>
                                                                 {if $invoice['is_discount']}
-                                                                    <li><a class="waves-effect" target="_blank" href="/printform-sf/{$invoice['id']}/?print=0/">Вывод <span class="hide-m-down">документа</span></a></li>
-                                                                    <li><a class="waves-effect" target="_blank" href="/printform-sf/{$invoice['id']}/?print=1/">с печатью</a></li>
+                                                                    <li><a class="waves-effect" target="_blank" href="/printform-sf/{$invoice['id']}/?print=0&discount=1/">Вывод <span class="hide-m-down">документа</span></a></li>
+                                                                    <li><a class="waves-effect" target="_blank" href="/printform-sf/{$invoice['id']}/?print=1&discount=1/">с печатью</a></li>
                                                                 {else}
                                                                     {if $is_discount}
-                                                                        <li><a class="waves-effect" target="_blank" href="/printform-sf/{$invoice['id']}/?print=0&disc=1/">Вывод <span class="hide-m-down">документа</span></a></li>
-                                                                        <li><a class="waves-effect" target="_blank" href="/printform-sf/{$invoice['id']}/?print=1&disc=1/">с печатью</a></li>
+                                                                        <li><a class="waves-effect" target="_blank" href="/printform-sf/{$invoice['id']}/?print=0&discount=1/">Вывод <span class="hide-m-down">документа</span></a></li>
+                                                                        <li><a class="waves-effect" target="_blank" href="/printform-sf/{$invoice['id']}/?print=1&discount=1/">с печатью</a></li>
                                                                     {else}
-                                                                        <li><a class="waves-effect" target="_blank" href="/printform-sf/{$invoice['id']}/?print=0&disc=0/">Вывод <span class="hide-m-down">документа</span></a></li>
-                                                                        <li><a class="waves-effect" target="_blank" href="/printform-sf/{$invoice['id']}/?print=1&disc=0/">с печатью</a></li>
+                                                                        <li><a class="waves-effect" target="_blank" href="/printform-sf/{$invoice['id']}/?print=0&discount=0/">Вывод <span class="hide-m-down">документа</span></a></li>
+                                                                        <li><a class="waves-effect" target="_blank" href="/printform-sf/{$invoice['id']}/?print=1&discount=0/">с печатью</a></li>
                                                                     {/if}
                                                                 {/if}
                                                             </ul>
-                                                        </li>
+                                                        </li> -->
                                                     </ul>
                                                 </li>
                                             </ul>
@@ -128,15 +130,38 @@
                                                         <li>
                                                             <a>Счёт</a>
                                                             <ul>
-                                                                <li><a class="waves-effect" target="_blank" href="/printform-invoice/{$invoice['id']}/?print=0/">Вывод <span class="hide-m-down">документа</span></a></li>
-                                                                <li><a class="waves-effect" target="_blank" href="/printform-invoice/{$invoice['id']}/?print=1/">с печатью</a></li>
+                                                                {if $invoice['is_discount']}
+                                                                    <li><a class="waves-effect" target="_blank" href="/printform-invoice/{$invoice['id']}/?print=0&discount=1/">Вывод <span class="hide-m-down">документа</span></a></li>
+                                                                    <li><a class="waves-effect" target="_blank" href="/printform-invoice/{$invoice['id']}/?print=1&discount=1/">с печатью</a></li>
+                                                                {else}                                                                    
+                                                                    <li><a class="waves-effect" target="_blank" href="/printform-invoice/{$invoice['id']}/?print=0&discount=0/">Вывод <span class="hide-m-down">документа</span></a></li>
+                                                                    <li><a class="waves-effect" target="_blank" href="/printform-invoice/{$invoice['id']}/?print=1&discount=0/">с печатью</a></li>                                                                   
+                                                                {/if}
                                                             </ul>
                                                         </li>
                                                         <li>
                                                             <a>Акт</a>
+                                                            <ul>
+                                                                {if $invoice['is_discount']}
+                                                                    <li><a class="waves-effect" target="_blank" href="/printform-akt/{$invoice['id']}/?print=0&discount=1/">Вывод <span class="hide-m-down">документа</span></a></li>
+                                                                    <li><a class="waves-effect" target="_blank" href="/printform-akt/{$invoice['id']}/?print=1&discount=1/">с печатью</a></li>
+                                                                {else}                                                                    
+                                                                    <li><a class="waves-effect" target="_blank" href="/printform-akt/{$invoice['id']}/?print=0&discount=0/">Вывод <span class="hide-m-down">документа</span></a></li>
+                                                                    <li><a class="waves-effect" target="_blank" href="/printform-akt/{$invoice['id']}/?print=1&discount=0/">с печатью</a></li>                                                                 
+                                                                {/if}
+                                                            </ul>
                                                         </li>
                                                         <li>
                                                             <a>Счёт-фактура</a>
+                                                            <ul>
+                                                                {if $invoice['is_discount']}
+                                                                    <li><a class="waves-effect" target="_blank" href="/printform-sf/{$invoice['id']}/?print=0&discount=1/">Вывод <span class="hide-m-down">документа</span></a></li>
+                                                                    <li><a class="waves-effect" target="_blank" href="/printform-sf/{$invoice['id']}/?print=1&discount=1/">с печатью</a></li>
+                                                                {else}                                                                    
+                                                                    <li><a class="waves-effect" target="_blank" href="/printform-sf/{$invoice['id']}/?print=0&discount=0/">Вывод <span class="hide-m-down">документа</span></a></li>
+                                                                    <li><a class="waves-effect" target="_blank" href="/printform-sf/{$invoice['id']}/?print=1&discount=0/">с печатью</a></li>
+                                                                {/if}
+                                                            </ul>
                                                         </li>
                                                     </ul>
                                                 </li>

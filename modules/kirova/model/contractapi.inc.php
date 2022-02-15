@@ -111,6 +111,9 @@ class ContractApi extends EntityList
             if ($contract['has_dop']) {
                 $dop = $contract->getActualSumForInvoice($period_month, $period_year);
             }
+            // echo '<pre>';
+            // var_dump($dop);
+            // exit();
             //Определить дату начала аренды
             $contract_start_payment_month = date('m', strtotime($contract['start_payment'])); // месяц начала аренды
             $contract_start_payment_year = date('Y', strtotime($contract['start_payment'])); // год начала аренды

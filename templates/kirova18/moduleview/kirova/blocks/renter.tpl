@@ -16,8 +16,26 @@
                 <div class="contract-info">
                     <div class="contract-info-item"><strong>№</strong> {$contract['number']} от {$contract['date']|date_format: '%d.%m.%Y'}</div>
                     <div class="contract-info-item">
+                        <!-- <pre>{$already_exposed|var_dump}</pre>
+                        <pre>{$is_discount|var_dump}</pre> -->
                         <strong>Баланс:</strong>
-                        <span class="{if $contract['balance'] > 0}green-text{else}red-text{/if}">{$contract['balance']} ₽</span>
+                        {if $already_exposed}
+                            {if $is_discount}
+                                {if $contract['balance'] < 0}
+                                    {if $fake_balance != 0}
+                                        <span class="red-text">{$fake_balance} ₽</span>
+                                    {else}
+                                        <span class="red-text">???(обратитесь к арендодателю за информацией о балансе договора)</span>
+                                    {/if}
+                                {else}
+                                    <span class="green-text">{$contract['balance']} ₽</span>
+                                {/if}
+                            {else}
+                                <span class="{if $contract['balance'] > 0}green-text{else}red-text{/if}">{$contract['balance']} ₽</span>
+                            {/if}
+                        {else}
+                            <span class="{if $contract['balance'] > 0}green-text{else}red-text{/if}">{$contract['balance']} ₽</span>
+                        {/if}                        
                     </div>
                     <div class="contract-info-item"><strong>Помещение: </strong>
                         {foreach $contract['rooms'] as $room}
