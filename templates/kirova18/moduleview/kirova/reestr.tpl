@@ -110,197 +110,60 @@
                             <div id="archive" style="display: none;">
                                 <table class="page-table">
                                     <thead>
-                                    <tr><th>Наименование организации</th>
-                                        <th>Текущий баланс</th>
-                                    </tr></thead>
-                                    <tbody>
-                                    <tr class="arenda-row">
-                                        <td>ООО «ТрансРегион»</td>
-                                        <td>- 1 365 340.00₽</td>
-                                    </tr><tr class="arenda-row">
-                                        <td>ООО «ЮгАвтоСтрой»</td>
-                                        <td>- 1 365 340.00₽</td>
-                                    </tr><tr class="arenda-row">
-                                        <td>ИП Веселкова Инна Федоровна</td>
-                                        <td>- 1 365 340.00₽</td>
-                                    </tr><tr class="arenda-row">
-                                        <td>ПАО «МРСК Северного Кавказа»</td>
-                                        <td>- 1 365 340.00₽</td>
-                                    </tr><tr class="arenda-row">
-                                        <td>Umbrella Corporation, ltd</td>
-                                        <td>- 1 365 340.00₽</td>
-                                    </tr><tr class="arenda-row">
-                                        <td>ООО «ТрансУралСиб»</td>
-                                        <td>- 1 365 340.00₽</td>
-                                    </tr><tr class="arenda-row">
-                                        <td>ИП Ман</td>
-                                        <td>- 1 365 340.00₽</td>
-                                    </tr><tr class="arenda-row">
-                                        <td>ООО «ЮгАвтоСтрой»</td>
-                                        <td>- 1 365 340.00₽</td>
-                                    </tr><tr class="arenda-row">
-                                        <td>ИП Веселкова Инна Федоровна</td>
-                                        <td>- 1 365 340.00₽</td>
-                                    </tr><tr class="arenda-row">
-                                        <td>ПАО «МРСК Северного Кавказа»</td>
-                                        <td>- 1 365 340.00₽</td>
-                                    </tr><tr class="arenda-row">
-                                        <td>Umbrella Corporation, ltd</td>
-                                        <td>- 1 365 340.00₽</td>
-                                    </tr><tr class="arenda-row">
-                                        <td>ООО «ТрансУралСиб»</td>
-                                        <td>- 1 365 340.00₽</td>
-                                    </tr><tr class="arenda-row">
-                                        <td>ИП Ман</td>
-                                        <td>- 1 365 340.00₽</td>
-                                    </tr><tr class="arenda-row">
-                                        <td>ООО «ЮгАвтоСтрой»</td>
-                                        <td>- 1 365 340.00₽</td>
-                                    </tr><tr class="arenda-row">
-                                        <td>ИП Веселкова Инна Федоровна</td>
-                                        <td>- 1 365 340.00₽</td>
-                                    </tr><tr class="arenda-row">
-                                        <td>ООО «ТрансРегион»</td>
-                                        <td>- 1 365 340.00₽</td>
-                                    </tr><tr class="arenda-row">
-                                        <td>ООО «ЮгАвтоСтрой»</td>
-                                        <td>- 1 365 340.00₽</td>
-                                    </tr><tr class="arenda-row">
-                                        <td>ИП Веселкова Инна Федоровна</td>
-                                        <td>- 1 365 340.00₽</td>
-                                    </tr><tr class="arenda-row">
-                                        <td>ПАО «МРСК Северного Кавказа»</td>
-                                        <td>- 1 365 340.00₽</td>
-                                    </tr><tr class="arenda-row">
-                                        <td>Umbrella Corporation, ltd</td>
-                                        <td>- 1 365 340.00₽</td>
-                                    </tr><tr class="arenda-row">
-                                        <td>ООО «ТрансУралСиб»</td>
-                                        <td>- 1 365 340.00₽</td>
-                                    </tr><tr class="arenda-row">
-                                        <td>ИП Ман</td>
-                                        <td>- 1 365 340.00₽</td>
-                                    </tr><tr class="arenda-row">
-                                        <td>ООО «ЮгАвтоСтрой»</td>
-                                        <td>- 1 365 340.00₽</td>
-                                    </tr><tr class="arenda-row">
-                                        <td>ИП Веселкова Инна Федоровна</td>
-                                        <td>- 1 365 340.00₽</td>
-                                    </tr><tr class="arenda-row">
-                                        <td>ПАО «МРСК Северного Кавказа»</td>
-                                        <td>- 1 365 340.00₽</td>
-                                    </tr><tr class="arenda-row">
-                                        <td>Umbrella Corporation, ltd</td>
-                                        <td>- 1 365 340.00₽</td>
-                                    </tr><tr class="arenda-row">
-                                        <td>ООО «ТрансУралСиб»</td>
-                                        <td>- 1 365 340.00₽</td>
-                                    </tr><tr class="arenda-row">
-                                        <td>ИП Ман</td>
-                                        <td>- 1 365 340.00₽</td>
-                                    </tr><tr class="arenda-row">
-                                        <td>ООО «ЮгАвтоСтрой»</td>
-                                        <td>- 1 365 340.00₽</td>
-                                    </tr><tr class="arenda-row">
-                                        <td>ИП Веселкова Инна Федоровна</td>
-                                        <td>- 1 365 340.00₽</td>
-                                    </tr><tr class="arenda-row">
-                                        <td>ПАО «МРСК Северного Кавказа»</td>
-                                        <td>- 1 365 340.00₽</td>
-                                    </tr><tr class="arenda-row">
-                                        <td>ООО «ТрансРегион»</td>
-                                        <td>- 1 365 340.00₽</td>
-                                    </tr><tr class="arenda-row">
-                                        <td>ООО «ЮгАвтоСтрой»</td>
-                                        <td>- 1 365 340.00₽</td>
-                                    </tr><tr class="arenda-row">
-                                        <td>ИП Веселкова Инна Федоровна</td>
-                                        <td>- 1 365 340.00₽</td>
-                                    </tr><tr class="arenda-row">
-                                        <td>ПАО «МРСК Северного Кавказа»</td>
-                                        <td>- 1 365 340.00₽</td>
-                                    </tr><tr class="arenda-row">
-                                        <td>Umbrella Corporation, ltd</td>
-                                        <td>- 1 365 340.00₽</td>
-                                    </tr><tr class="arenda-row">
-                                        <td>ООО «ТрансУралСиб»</td>
-                                        <td>- 1 365 340.00₽</td>
-                                    </tr><tr class="arenda-row">
-                                        <td>ИП Ман</td>
-                                        <td>- 1 365 340.00₽</td>
-                                    </tr><tr class="arenda-row">
-                                        <td>ООО «ЮгАвтоСтрой»</td>
-                                        <td>- 1 365 340.00₽</td>
-                                    </tr><tr class="arenda-row">
-                                        <td>ИП Веселкова Инна Федоровна</td>
-                                        <td>- 1 365 340.00₽</td>
-                                    </tr><tr class="arenda-row">
-                                        <td>ПАО «МРСК Северного Кавказа»</td>
-                                        <td>- 1 365 340.00₽</td>
-                                    </tr><tr class="arenda-row">
-                                        <td>Umbrella Corporation, ltd</td>
-                                        <td>- 1 365 340.00₽</td>
-                                    </tr><tr class="arenda-row">
-                                        <td>ООО «ТрансУралСиб»</td>
-                                        <td>- 1 365 340.00₽</td>
-                                    </tr><tr class="arenda-row">
-                                        <td>ИП Ман</td>
-                                        <td>- 1 365 340.00₽</td>
-                                    </tr><tr class="arenda-row">
-                                        <td>ООО «ЮгАвтоСтрой»</td>
-                                        <td>- 1 365 340.00₽</td>
-                                    </tr><tr class="arenda-row">
-                                        <td>ИП Веселкова Инна Федоровна</td>
-                                        <td>- 1 365 340.00₽</td>
-                                    </tr><tr class="arenda-row">
-                                        <td>ООО «ТрансРегион»</td>
-                                        <td>- 1 365 340.00₽</td>
-                                    </tr><tr class="arenda-row">
-                                        <td>ООО «ЮгАвтоСтрой»</td>
-                                        <td>- 1 365 340.00₽</td>
-                                    </tr><tr class="arenda-row">
-                                        <td>ИП Веселкова Инна Федоровна</td>
-                                        <td>- 1 365 340.00₽</td>
-                                    </tr><tr class="arenda-row">
-                                        <td>ПАО «МРСК Северного Кавказа»</td>
-                                        <td>- 1 365 340.00₽</td>
-                                    </tr><tr class="arenda-row">
-                                        <td>Umbrella Corporation, ltd</td>
-                                        <td>- 1 365 340.00₽</td>
-                                    </tr><tr class="arenda-row">
-                                        <td>ООО «ТрансУралСиб»</td>
-                                        <td>- 1 365 340.00₽</td>
-                                    </tr><tr class="arenda-row">
-                                        <td>ИП Ман</td>
-                                        <td>- 1 365 340.00₽</td>
-                                    </tr><tr class="arenda-row">
-                                        <td>ООО «ЮгАвтоСтрой»</td>
-                                        <td>- 1 365 340.00₽</td>
-                                    </tr><tr class="arenda-row">
-                                        <td>ИП Веселкова Инна Федоровна</td>
-                                        <td>- 1 365 340.00₽</td>
-                                    </tr><tr class="arenda-row">
-                                        <td>ПАО «МРСК Северного Кавказа»</td>
-                                        <td>- 1 365 340.00₽</td>
-                                    </tr><tr class="arenda-row">
-                                        <td>Umbrella Corporation, ltd</td>
-                                        <td>- 1 365 340.00₽</td>
-                                    </tr><tr class="arenda-row">
-                                        <td>ООО «ТрансУралСиб»</td>
-                                        <td>- 1 365 340.00₽</td>
-                                    </tr><tr class="arenda-row">
-                                        <td>ИП Ман</td>
-                                        <td>- 1 365 340.00₽</td>
-                                    </tr><tr class="arenda-row">
-                                        <td>ООО «ЮгАвтоСтрой»</td>
-                                        <td>- 1 365 340.00₽</td>
-                                    </tr><tr class="arenda-row">
-                                        <td>ИП Веселкова Инна Федоровна</td>
-                                        <td>- 1 365 340.00₽</td>
-                                    </tr><tr class="arenda-row">
-                                        <td>ПАО «МРСК Северного Кавказа»</td>
-                                        <td>- 1 365 340.00₽</td>
+                                    <tr>
+                                        <th>Номер договора</th>
+                                        <th>Помещения</th>
+                                        <th>Арендатор</th>
+                                        <th>Сумма</th>
+                                        <th>Баланс</th>
+                                        <th>действия</th>
                                     </tr>
+                                    </thead>
+                                    <tbody>
+                                    {foreach $inactive_contracts as $contract}
+                                        <tr class="arenda-row {if $contract['status'] == 100}ending-soon{/if}" id="contract-row-{$contract['id']}">
+                                            <td>{$contract['number']}</td>
+                                            <td>
+                                                {foreach $contract['rooms'] as $room}
+                                                    {$room}{if !$room@last}, {/if}
+                                                {/foreach}
+                                            </td>
+                                            <td>{$contract['renter_short_title']}</td>
+                                            <td>{$contract['sum']}({$contract['sum_discount']})₽</td>
+                                            <td id="contract-balance-{$contract['id']}" class="{if $contract['balance'] >= 0}green-text{else}red-text{/if}">{$contract['balance']}₽</td>
+                                            <td id="action-{$contract['id']}">
+                                                <a
+                                                        class="refresh-balance"
+                                                        data-id="{$contract['id']}"
+                                                        data-url="{$router->getUrl('kirova-front-contracts', ['Act' => 'refreshBalance'])}"
+                                                        title="обновить баланс"
+                                                >
+                                                    <i class="mdi mdi-restore"></i>
+                                                </a>
+                                                <a
+                                                        title="внести оплату"
+                                                        class="rs-in-dialog"
+                                                        data-url="{$router->getUrl('kirova-front-payment', ['Act' => 'getAddPaymentPopup', 'id' => {$contract['id']}])}"
+                                                >
+                                                    <i class="mdi mdi-cash-plus"></i>
+                                                </a>
+                                                <a
+                                                        title="список оплат"
+                                                        class="rs-in-dialog"
+                                                        data-url="{$router->getUrl('kirova-front-payment', ['Act' => 'getListPaymentPopup', 'id' => {$contract['id']}])}"
+                                                >
+                                                    <i class="mdi mdi-cash-check"></i>
+                                                </a>
+                                                <a
+                                                        title="список счетов"
+                                                        class="rs-in-dialog"
+                                                        data-url="{$router->getUrl('kirova-front-invoice', ['Act' => 'getListInvoicePopup', 'id' => {$contract['id']}])}"
+                                                >
+                                                    <i class="mdi mdi-playlist-check"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    {/foreach}
                                     </tbody>
                                 </table>
                             </div>

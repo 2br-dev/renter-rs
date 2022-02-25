@@ -143,7 +143,9 @@ $(document).ready(function(){
     $('body').on('click', '.refresh-balance', refreshBalance);
     $('body').on('click', '.check-last-invoice', checkLastInvoice);
     $('body').on('click', '.generate-last-invoice', generateLastInvoice);
-    $('body').on('click', '.forced-discount', invoiceForcedDiscount)
+    $('body').on('click', '.forced-discount', invoiceForcedDiscount);
+    $('body').on('click', '#add-communal', addCommunal);
+    $('body').on('click', '#set-communal-filter', setCommunalFilter);
 });
 
 /**
@@ -503,6 +505,69 @@ function invoiceForcedDiscount(e){
             }else{
                 M.toast({html: '<p>Произошла ошибка11</p>', classes: 'toast_error'});
             }
+        },
+        error: function(err){
+            console.error(err);
+            M.toast({html: '<p>Произошла ошибка</p>', classes: 'toast_error'});
+        }
+    });
+}
+
+function addCommunal(e) {
+    if(e !== 'undefined'){
+        e.preventDefault();
+    }
+    $.ajax({
+        url: $(this).data('url'),
+        type: 'POST',
+        data: $('#communal-form').serialize(),
+        dataType: 'JSON',
+        success: function(res){
+            if(res.success){
+                M.toast({html: '<p>Добавлено</p>', classes: 'toast_success'});
+                $('#communal-form')[0].reset();
+            }else{
+                if(res.error === 'period'){
+                    M.toast({html: '<p>Не указан период</p>', classes: 'toast_error'});
+                }
+                if(res.error === 'type'){
+                    M.toast({html: '<p>Не выбран Тип</p>', classes: 'toast_error'});
+                }
+                if(res.error === 'summa'){
+                    M.toast({html: '<p>Не указана сумма</p>', classes: 'toast_error'});
+                }
+                if(res.error === 'volume'){
+                    M.toast({html: '<p>Не указан объем</p>', classes: 'toast_error'});
+                }
+                if(res.error === 'same'){
+                    M.toast({html: '<p>Такой виду за выбранный период уже занесен</p>', classes: 'toast_error'});
+                }
+            }
+        },
+        error: function(err){
+            console.error(err);
+            M.toast({html: '<p>Произошла ошибка</p>', classes: 'toast_error'});
+        }
+    });
+}
+
+function setCommunalFilter(e) {
+    if(e !== 'undefined'){
+        e.preventDefault();
+    }
+    $.ajax({
+        url: $(this).data('url'),
+        type: 'POST',
+        data: $('#communal-filter').serialize(),
+        dataType: 'JSON',
+        success: function(res){
+            let context = {
+                communal: res.communal
+            };
+            let elem = document.getElementById('communal-table');
+            let source = $('#communal-row-template').html();
+            let template = Template7.compile(source);
+            elem.innerHTML = template(context);
         },
         error: function(err){
             console.error(err);

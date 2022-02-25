@@ -59,7 +59,7 @@ class Contract extends OrmObject
                 'has_dop' => new Type\Integer([
                     'description' => t('Есть доп. соглашение?'),
                     'visible' => false,
-                    'default' => 0
+//                    'default' => 0
                 ]),
             t('Состояние'),
                 'balance' => new Type\Double([
@@ -215,11 +215,11 @@ class Contract extends OrmObject
         $info = [];
         $start_balance_inc = false; // Прибавлен ли к оплатам стартовый баланс
 
-        // $current_month = date('m');
-        // $current_year = date('Y');
-        // $already_exposed = false;
-        // $config = \RS\Config\Loader::byModule('kirova');
-        // $is_discount = false;
+        $current_month = date('m');
+        $current_year = date('Y');
+        $already_exposed = false; // Выставлен ли счет за текущий месяц и год
+
+        $config = \RS\Config\Loader::byModule('kirova');
 
         foreach($invoices as $key_invoice => $invoice){
             $last_day = date('t', strtotime($invoice['period_year'].'-'.$invoice['period_month'].'-01'));
@@ -278,41 +278,19 @@ class Contract extends OrmObject
                 }
             }
 
-             // есил итерация по счетам последняя и оплат больше по количеству чем счетов - плюсуем credit
-            if ($key_invoice === (count($invoices) - 1) ){
-
-                // if($already_exposed){
-
-                //     $invoice_api = new \Kirova\Model\InvoiceApi();
-                //     $last_invoice = $invoice_api->setFilter('period_month', $current_month)
-                //         ->setFilter('period_year', $current_year)
-                //         ->setFilter('renter_id', $this['renter'])
-                //         ->getFirst();
-                //     // Проверяем условие - если текущий день уже после дня для представления скидки
-                //     if(intval(date('d')) > $config['day_with_discount']){
-                //         // Проверяем условие если баланс положительный то скидка все равно будет предоставлена
-                //         if($contract['balance'] >= 0){
-                //             $is_discount = true;
-                //         }else{
-                //             $is_discount = false;
-                //         }
-                //     }else{
-                //         // Если счет за последний месяц выставлен и баланс отрицателен на сумму счета без скидки
-                //         if(($this['balance'] < 0) && ($this['balance'] + $last_invoice['sum'] >= 0)){
-                //             $is_discount = true;
-                //         }
-                //         if($this['balance'] > 0){
-                //             $is_discount = true;
-                //         }
-                //     }
-                // }
-                if(!empty($payments)){
-                   foreach ($payments as $key => $value){
-                        $credit += $value['sum'];
-                    } 
-                }                
+            // есил итерация по счетам последняя и оплат больше по количеству чем счетов - плюсуем credit
+            if ($key_invoice === (count($invoices) - 1) && !empty($payments)){
+                foreach ($payments as $key => $value){
+                    $credit += $value['sum'];
+                    $last_pament_date = intval(date('d', strtotime($value['date'])));
+                }
+                //Если последний счет выставлен и последняя оплата до 05 числа и сумма покрывает долг. без послднего месяца + послед. счет со скидкой
+                if($already_exposed && ($debit + $invoice['sum'] >= 0) && ($last_pament_date <= $config['day_with_discount'])){
+                    $trigger = true;
+                }else{
+                    $trigger = false;
+                }
             }
-            
             if($trigger){
                 $debit += $invoice['discount_sum'];
 //                $info[$invoice['period_month']] = $invoice['discount_sum'];
@@ -330,8 +308,8 @@ class Contract extends OrmObject
 
            // $info['saldo'][] = $saldo.' - '.$credit. ' - ' .$debit;
            // $info['trigger'][] = $trigger;
-           $info['is_discount'][] = $is_discount;
-           $info['already_exposed'][] = $already_exposed;
+//           $info['is_discount'][] = $is_discount;
+//           $info['already_exposed'][] = $already_exposed;
            // $info['finish'][] = $invoice['period_month'] .' - '. $invoice['finish_discount'];
             $saldo = $credit - $debit;
             $trigger = false;

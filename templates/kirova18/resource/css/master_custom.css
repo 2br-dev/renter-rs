@@ -55,7 +55,7 @@ header.no-auth nav {
     color: red;
 }
 tr.ending-soon{
-    background-color: #c27f7f;
+    background-color: #c27f7f !important;
 }
 .green-mdi{
     color: green !important;
@@ -87,4 +87,28 @@ tr.ending-soon{
 }
 .renter-login-data table{
     border-collapse: collapse;
+}
+.global-wrapper#bills .bottom-action {
+    padding: 0 1.5rem;
+}
+#invoices .header {
+    display: flex;
+    align-items: center;
+}
+#invoices .header h2 {
+    white-space: nowrap;
+}
+#invoices .header .h2-wrapper {
+    margin-right: 15px;
+}
+#invoices .filters-wrapper {
+    position: sticky;
+    top: 65px;
+    z-index: 20;
+    background: #fff;
+    width: 100%;
+    border-bottom: 1px solid #B9B9B9;
+}
+body .filters {
+    margin: 20px 0 0 0;
 }

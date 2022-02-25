@@ -7,7 +7,7 @@
                 <a href="/invoices/" class="navi-link">Выставление счетов</a>
                 <a href="/print/" class="navi-link">Печать документов</a>
                 <a href="/payments/" class="navi-link">История платежей</a>
-                <a href="/stats.html" class="navi-link">Статистика</a>
+                <a href="/statistics/" class="navi-link">Статистика</a>
                 <a href="/reports.html" class="navi-link">Отчёты</a>
                 <div class="separator"></div>
                 <div class="actions">

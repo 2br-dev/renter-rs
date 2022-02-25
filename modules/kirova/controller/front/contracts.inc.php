@@ -140,9 +140,9 @@ class Contracts extends Front
                 }
             }
             
-            $info['saldo'][] = $saldo.' - '.$credit. ' - ' .$debit;
-            $info['trigger'][] = $trigger;
-            $info['finish'][] = $invoice['period_month'] .' - '. $invoice['finish_discount'];
+//            $info['saldo'][] = $saldo.' - '.$credit. ' - ' .$debit;
+//            $info['trigger'][] = $trigger;
+//            $info['finish'][] = $invoice['period_month'] .' - '. $invoice['finish_discount'];
             $saldo = $credit - $debit;
             $trigger = false;
             $invoice->update();

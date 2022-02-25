@@ -109,7 +109,6 @@ function init(){
         yearAutocomplete = M.Autocomplete.init(document.querySelector('.autocomplete#year'), {
             minLength: 0,
             data: {
-                "2020": null,
                 "2021": null,
                 "2022": null,
                 "2023": null,

@@ -1,6 +1,6 @@
 <select name="period_month" id="period_month" class="styled">
-    <option value="0">Не выбран</option>
-    <option value="01" selected>Январь</option>
+    <option value="0" selected>Месяц</option>
+    <option value="01">Январь</option>
     <option value="02">Февраль</option>
     <option value="03">Март</option>
     <option value="04">Апрель</option>

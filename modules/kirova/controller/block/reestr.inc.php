@@ -97,7 +97,21 @@ class Reestr extends StandartBlock
                 $active_contracts[$key]['last-invoice'] = false;
             }
         }
+        // Не действующие договоры
+        $inactive_contracts = $contract_api->clearFilter()->setFilter('status', "0")->setOrder('number ASC')->getList();
+        foreach($inactive_contracts as $key => $value){
+            $renter = new \Kirova\Model\Orm\Renter($value['renter']);
+            $inactive_contracts[$key]['renter_short_title'] = $renter['short_title'];
+            $rooms = [];
+            foreach ($value['room'] as $room_id){
+                $room = new \Kirova\Model\Orm\Room($room_id);
+                $rooms[] = $room['number'];
+            }
+            $inactive_contracts[$key]['rooms'] = $rooms;
+        }
         $this->view->assign('active_contracts', $active_contracts);
+        $this->view->assign('inactive_contracts', $inactive_contracts);
+
         $current_user = \RS\Application\Auth::getCurrentUser();
         $this->view->assign('user', $current_user);
         return $this->result->setTemplate($this->getParam('indexTemplate'));

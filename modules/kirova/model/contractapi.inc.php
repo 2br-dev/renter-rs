@@ -42,7 +42,7 @@ class ContractApi extends EntityList
      */
     public function getArchContracts()
     {
-        $contracts = $this->setFilter('status', 0)
+        $contracts = $this->clearFilter()->setFilter('status', 0)
             ->getList();
         return $contracts;
     }
