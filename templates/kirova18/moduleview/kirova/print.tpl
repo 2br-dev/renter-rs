@@ -40,7 +40,10 @@
                             <tbody id="print-table">
                                 {foreach $invoices as $invoice}
                                     <tr id="invoice-row-{$invoice['id']}" {if $invoice['is_modified']}class="invoice-modified"{/if}>
-                                        <td class="check-field">{$invoice['number']}{if $invoice['is_modified']}<span> (мод.)</span>{/if}</td>
+                                        <td class="check-field">{$invoice['number']}
+                                            {if $invoice['is_modified']}<span> (мод.)</span>{/if}
+                                            {if $invoice['is_discount']}<span> (скидка)</span>{/if}
+                                        </td>
                                         <td>{$invoice['renter_short_title']}</td>
                                         <td>{$invoice['contract_number']}</td>
                                         <td>{$invoice['sum']}{if !$invoice['is_modified']}({$invoice['discount_sum']}){/if} ₽</td>

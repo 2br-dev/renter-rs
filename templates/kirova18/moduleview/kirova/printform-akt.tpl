@@ -1,6 +1,7 @@
 {addcss file='akt.css'}
 {$config = \RS\Config\Loader::ByModule('kirova')}
-{if $is_admin && $user['is_admin']}
+
+{if $user['is_admin']}
     <div class="wrapper-akt">
     <div class="arendodatel-name">
         <p>Индивидуальный предприниматель Кононович Галина Павловна</p>
@@ -205,6 +206,6 @@
             </div>
         </div>
     {else}
-        <p>У вас нет прав для просмотра данной страницы</p>
+        <p>У вас нет прав для просмотра данной страницы11</p>
     {/if}
 {/if}

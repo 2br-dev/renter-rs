@@ -98,7 +98,7 @@ class Contract extends OrmObject
      */
     public function getRenter()
     {
-        return new \Kirova\Model\Orm\Renter($this['id']);
+        return new \Kirova\Model\Orm\Renter($this['renter']);
     }
 
     /**

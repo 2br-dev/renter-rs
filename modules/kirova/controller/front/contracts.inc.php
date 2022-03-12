@@ -35,7 +35,7 @@ class Contracts extends Front
         $credit = 0;
         $debit = 0;
         $saldo = 0;
-        $start_balance = $renter['start_balance']; //Старотовый бланс арендатора
+        $start_balance = $contract['start_balance']; //Старотовый бланс арендатора
         $trigger = false; // Выполненно ли условие предоставления скидки
         $info = [];
         $start_balance_inc = false; // Прибавлен ли к оплатам стартовый баланс
@@ -111,6 +111,12 @@ class Contracts extends Front
                     }
 //                    break;
                 }
+            }else{
+                // Увеличиваем $credit с учетом стартого баланса арендатора
+                if(!$start_balance_inc){
+                    $credit = $payment['sum'] + $credit + $start_balance;
+                    $start_balance_inc = true;
+                }    
             }
             // есил итерация по счетам последняя и оплат больше по количеству чем счетов - плюсуем credit
             if ($key_invoice === (count($invoices) - 1) && !empty($payments)){                
@@ -140,9 +146,10 @@ class Contracts extends Front
                 }
             }
             
-//            $info['saldo'][] = $saldo.' - '.$credit. ' - ' .$debit;
-//            $info['trigger'][] = $trigger;
-//            $info['finish'][] = $invoice['period_month'] .' - '. $invoice['finish_discount'];
+           // $info['saldo'][] = $saldo.' - '.$credit. ' - ' .$debit;
+           // $info['trigger'][] = $trigger;
+           // $info['finish'][] = $invoice['period_month'] .' - '. $invoice['finish_discount'];
+           // $info['start_balance'] = $start_balance;
             $saldo = $credit - $debit;
             $trigger = false;
             $invoice->update();

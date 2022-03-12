@@ -92,6 +92,7 @@ class ContractApi extends EntityList
     {
         $success = false;
         $amount = 1;
+
         foreach ($contracts_id as $contract_id) {
             /**
              * @var \Kirova\Model\Orm\Contract $contract

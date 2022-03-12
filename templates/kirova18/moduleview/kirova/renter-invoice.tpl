@@ -7,7 +7,25 @@
                     </div>
                     <div class="contract">
                         <p>Договор № {$contract['number']} от {$contract['date']|date_format: '%d.%m.%Y'}</p>
-                        <p><strong>Баланс:</strong> <span class="{if $contract['balance'] > 0}green-text{else}red-text{/if}">{$contract['balance']} ₽</span></p>
+                        <p><strong>Баланс:</strong> 
+                            {if $already_exposed}
+                                {if $is_discount}
+                                    {if $contract['balance'] < 0}
+                                        {if $fake_balance != 0}
+                                            <span class="red-text">{$fake_balance} ₽</span>
+                                        {else}
+                                            <span class="red-text">???(обратитесь к арендодателю за информацией о балансе договора)</span>
+                                        {/if}
+                                    {else}
+                                        <span class="green-text">{$contract['balance']} ₽</span>
+                                    {/if}
+                                {else}
+                                    <span class="{if $contract['balance'] > 0}green-text{else}red-text{/if}">{$contract['balance']} ₽</span>
+                                {/if}
+                            {else}
+                                <span class="{if $contract['balance'] > 0}green-text{else}red-text{/if}">{$contract['balance']} ₽</span>
+                            {/if}
+                        </p>    
                     </div>
                     <div id="active">
                         <table class="page-table checkbox-table">

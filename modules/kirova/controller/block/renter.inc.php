@@ -89,6 +89,7 @@ class Renter extends StandartBlock
         $fake_balance = 0;
         if($already_exposed){
             // Проверяем условие - если текущий день уже после дня для представления скидки
+           
             if(intval(date('d')) > $config['day_with_discount']){
                 // Проверяем условие если баланс положительный то скидка все равно будет предоставлена
                 if($contract['balance'] >= 0){
@@ -105,6 +106,7 @@ class Renter extends StandartBlock
                 if($contract['balance'] > 0){
                     $is_discount = true;
                 }
+                var_dump($fake_balance);
             }
         }
 
