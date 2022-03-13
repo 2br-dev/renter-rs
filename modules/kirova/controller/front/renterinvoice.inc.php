@@ -19,52 +19,32 @@ class RenterInvoice extends Front
          * @var \Kirova\Model\Orm\Contract $contract
          */
         $contract = $contract_api->setFilter('renter', $current_user['renter_id'])->setFilter('status', 0, '<>')->getFirst();
+        $archive_contracts = $contract_api->clearFilter()->setFilter('renter', $current_user['renter_id'])->setFilter('status', 0)->getList();
         $invoices = $contract->getAllInvoices();
         $current_date_timestamp = strtotime(date('Y-m-d'));
         $current_month = date('m');
         $current_year = date('Y');
         $already_exposed = false; // Выставлен ли счет за текущий месяц и год    
         foreach ($invoices as $key => $value){
+            /**
+             * @var \Kirova\Model\Orm\Invoice $value
+             */
             if(($value['period_month'] == $current_month) && ($value['period_year'] == $current_year)){
                 $already_exposed = true;
             }
-            switch ($value['period_month']){
-                case '01':
-                    $invoices[$key]['period_month_string'] = 'Январь';
-                    break;
-                case '02':
-                    $invoices[$key]['period_month_string'] = 'Февраль';
-                    break;
-                case '03':
-                    $invoices[$key]['period_month_string'] = 'Март';
-                    break;
-                case '04':
-                    $invoices[$key]['period_month_string'] = 'Апрель';
-                    break;
-                case '05':
-                    $invoices[$key]['period_month_string'] = 'Май';
-                    break;
-                case '06':
-                    $invoices[$key]['period_month_string'] = 'Июнь';
-                    break;
-                case '07':
-                    $invoices[$key]['period_month_string'] = 'Июль';
-                    break;
-                case '08':
-                    $invoices[$key]['period_month_string'] = 'Август';
-                    break;
-                case '09':
-                    $invoices[$key]['period_month_string'] = 'Сентябрь';
-                    break;
-                case '10':
-                    $invoices[$key]['period_month_string'] = 'Октябрь';
-                    break;
-                case '11':
-                    $invoices[$key]['period_month_string'] = 'Ноябрь';
-                    break;
-                case '12':
-                    $invoices[$key]['period_month_string'] = 'Декабрь';
-                    break;
+            $invoices[$key]['period_month_string'] = $value->getStringMonthByNumber();
+        }
+        foreach ($archive_contracts as $key => $archive_contract){
+            /**
+             * @var \Kirova\Model\Orm\Contract $archive_contract
+             */
+            $archive_invoices = $archive_contract->getAllInvoices();
+            $archive_contracts[$key]['invoices'] = $archive_invoices;
+            foreach ($archive_invoices as $key_invoice => $invoice){
+                /**
+                 * @var \Kirova\Model\Orm\Invoice $invoice
+                 */
+                $archive_contracts[$key]['invoices'][$key_invoice]['period_month_string'] = $invoice->getStringMonthByNumber();
             }
         }
         $config = \RS\Config\Loader::byModule('kirova');
@@ -109,7 +89,8 @@ class RenterInvoice extends Front
             'is_discount' => $is_discount,
             'already_exposed' => $already_exposed,
             'contract' => $contract,
-            'fake_balance' => $fake_balance
+            'fake_balance' => $fake_balance,
+            'archive_contracts' => $archive_contracts
         ]);
         return $this->result->setTemplate('%kirova%/renter-invoice.tpl');
     }

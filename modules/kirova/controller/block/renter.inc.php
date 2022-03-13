@@ -52,6 +52,7 @@ class Renter extends StandartBlock
          * @var \Kirova\Model\Orm\Contract $contract
          */
         $contract = $contract_api->setFilter('renter', $current_user['renter_id'])->setFilter('status', 0, '<>')->getFirst();
+        $archive_contracts = $contract_api->clearFilter()->setFilter('renter', $current_user['renter_id'])->setFilter('status', 0)->getList();
         $contract->refreshBalance(); // Каждый раз при перезагрузки обновляем баланс договора
         $renter = new \Kirova\Model\Orm\Renter($current_user['renter_id']);
         $contract_rooms = $contract->getRooms();
@@ -115,7 +116,8 @@ class Renter extends StandartBlock
             'contract' => $contract,
             'is_discount' => $is_discount,
             'already_exposed' => $already_exposed,
-            'fake_balance' => $fake_balance
+            'fake_balance' => $fake_balance,
+            'archive_contracts' => $archive_contracts
         ]);
         return $this->result->setTemplate($this->getParam('indexTemplate'));
     }

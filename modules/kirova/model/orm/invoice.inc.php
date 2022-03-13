@@ -62,4 +62,54 @@ class Invoice extends OrmObject
             ])
         ]);
     }
+
+    /**
+     * Возвращает строковое значение месяца по номеру
+     * @return string
+     */
+    public function getStringMonthByNumber()
+    {
+        switch ($this['period_month']){
+            case '01':
+                $string = 'Январь';
+                break;
+            case '02':
+                $string = 'Февраль';
+                break;
+            case '03':
+                $string = 'Март';
+                break;
+            case '04':
+                $string = 'Апрель';
+                break;
+            case '05':
+                $string = 'Май';
+                break;
+            case '06':
+                $string = 'Июнь';
+                break;
+            case '07':
+                $string = 'Июль';
+                break;
+            case '08':
+                $string = 'Август';
+                break;
+            case '09':
+                $string = 'Сентябрь';
+                break;
+            case '10':
+                $string = 'Октябрь';
+                break;
+            case '11':
+                $string = 'Ноябрь';
+                break;
+            case '12':
+                $string = 'Декабрь';
+                break;
+            default:
+                $string = 'Неопределено';
+                break;
+        }
+        return $string;
+    }
 }

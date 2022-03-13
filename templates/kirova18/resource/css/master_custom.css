@@ -112,3 +112,6 @@ tr.ending-soon{
 body .filters {
     margin: 20px 0 0 0;
 }
+.collapsible-header p {
+    margin: 10px;
+}

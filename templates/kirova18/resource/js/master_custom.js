@@ -1,5 +1,7 @@
 var renterAutocomplete;
 $(document).ready(function(){
+    $('.collapsible').collapsible();
+
     $('#invoices-submit').on('click', function (e){
         e.preventDefault();
         let form = $('#invoices');
@@ -42,44 +44,6 @@ $(document).ready(function(){
         })
     });
 
-    // $('.arenda-row').on('click', function(e){
-    //     e.preventDefault();
-    //     let id = $(this).data('id');
-    //     let url = $(this).data('url');
-    //     $.ajax({
-    //         url: url,
-    //         type: 'POST',
-    //         dataType: 'JSON',
-    //         data: {
-    //             id: id
-    //         },
-    //         success: function(res){
-    //             let data = {
-    //                 login: res.renter.login,
-    //                 password: res.renter.password,
-    //                 renter_title: res.renter.short_title,
-    //                 date_start: res.contract.date_start,
-    //                 date_finish: res.contract.date_finish,
-    //                 sum: res.contract.sum,
-    //                 sum_discount: res.contract.sum_discount,
-    //                 peni: res.contract.peni,
-    //                 rooms_number: res.contract.rooms_number
-    //             };
-    //             let elem = document.getElementById('renter_full_data');
-    //             let source = $('#renter_full_data_template').html();
-    //             let template = Template7.compile(source);
-    //             elem.innerHTML = template(data);
-    //         },
-    //         error: function(err){
-    //             console.error(err);
-    //         }
-    //     });
-    //
-    //
-    //     // console.log(result);
-    //
-    //
-    // });
     // Заполняем автокомплит всеми арендаторами
     if ($('.autocomplete#renters').length) {
         let renters = {};
@@ -408,11 +372,13 @@ function refreshBalance(e){
         data: {id: $(this).data('id')},
         success: function(res){
             console.log(res);
-            $('#contract-balance-'+res.id+'').text(res.balance+'₽');
+            let tr = $('#contract-balance-'+res.id+'');
+            tr.text(res.balance+'₽');
             if(res.balance < 0){
-                $('#contract-balance-'+res.id+'').removeClass('green-text').addClass('red-text');
+                tr.removeClass('green-text').addClass('red-text');
+            }else{
+                tr.removeClass('red-text').addClass('green-text');
             }
-
         },
         error: function(err){
             console.error(err);

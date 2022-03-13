@@ -19,6 +19,7 @@ class RenterPayment extends Front
          * @var \Kirova\Model\Orm\Contract $contract
          */
         $contract = $contract_api->setFilter('renter', $current_user['renter_id'])->setFilter('status', 0, '<>')->getFirst();
+        $archive_contracts = $contract_api->clearFilter()->setFilter('renter', $current_user['renter_id'])->setFilter('status', 0)->getList();
         $payments = $contract->getAllPayments();
         $invoices = $contract->getAllInvoices();
 
@@ -62,6 +63,13 @@ class RenterPayment extends Front
             }
         }
 
+        foreach ($archive_contracts as $key => $value){
+            /**
+             * @var \Kirova\Model\Orm\Contract $value
+             */
+            $archive_contracts[$key]['payments'] = $value->getAllPayments();
+        }
+
         $this->view->assign('user', $current_user);
         $this->view->assign('payments', $payments);
         $this->view->assign('contract', $contract);
@@ -70,7 +78,8 @@ class RenterPayment extends Front
             'current_year' => $current_year,
             'is_discount' => $is_discount,
             'already_exposed' => $already_exposed,
-            'fake_balance' => $fake_balance
+            'fake_balance' => $fake_balance,
+            'archive_contracts' => $archive_contracts
         ]);
         return $this->result->setTemplate('%kirova%/renter-payment.tpl');
     }
