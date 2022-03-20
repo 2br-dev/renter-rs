@@ -16,6 +16,7 @@
         </ul>
         <div class="row">
             <div id="active">
+                {if !empty($contract)}
                 <h2>Договор <span>действующий</span></h2>
                 <div class="col s12">
                     <div class="contract-info">
@@ -51,14 +52,23 @@
                         <div class="contract-info-item"><strong>Сумма аренды в мес. со скидкой:</strong> {$contract['sum_discount']} ₽</div>
                     </div>
                 </div>
+                {else}
+                    <p>Нет действующих договоров</p>
+                {/if}
             </div>
             <div id="archive">
                 <p>Здесь отображаются данные по недействующим договорам арендатора</p>
                 <ul class="collapsible">
                     {foreach $archive_contracts as $contract}
                         <li>
-                            <div class="collapsible-header">{$contract['number']}</div>
-                            <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+                            <div class="collapsible-header"><p>{$contract['number']}</p> <p><strong> Баланс: </strong><span class="{if $contract['balance'] > 0}green-text{else}red-text{/if}">{$contract['balance']} ₽</span></p></div>
+                            <div class="collapsible-body"><div class="contract-info-item"><strong>Помещение: </strong>
+                            {foreach $contract['rooms'] as $room}
+                                {$room}{if !$room@last}, {/if}
+                            {/foreach}
+                        </div>
+                        <div class="contract-info-item"><strong>Сумма аренды в мес.:</strong> {$contract['sum']} ₽</div>
+                        <div class="contract-info-item"><strong>Сумма аренды в мес. со скидкой:</strong> {$contract['sum_discount']} ₽</div></div>
                         </li>
                     {/foreach}
                 </ul>

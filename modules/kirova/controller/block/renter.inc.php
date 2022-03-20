@@ -48,68 +48,74 @@ class Renter extends StandartBlock
     {
         $current_user = \RS\Application\Auth::getCurrentUser();
         $contract_api = new \Kirova\Model\ContractApi();
+        $renter = new \Kirova\Model\Orm\Renter($current_user['renter_id']);
         /**
          * @var \Kirova\Model\Orm\Contract $contract
          */
         $contract = $contract_api->setFilter('renter', $current_user['renter_id'])->setFilter('status', 0, '<>')->getFirst();
         $archive_contracts = $contract_api->clearFilter()->setFilter('renter', $current_user['renter_id'])->setFilter('status', 0)->getList();
-        $contract->refreshBalance(); // Каждый раз при перезагрузки обновляем баланс договора
-        $renter = new \Kirova\Model\Orm\Renter($current_user['renter_id']);
-        $contract_rooms = $contract->getRooms();
-        foreach ($contract_rooms as $room){
-            $room_array = $room->getValues();
-            $rooms[] = $room_array['number'];
-        }
-        $contract['rooms'] = $rooms;
-        if($contract['has_dop']){
-            $actual_sum = $contract->getActualSum();
-            if($actual_sum){
-                $contract['sum'] = $actual_sum['sum'];
-                $contract['sum_discount'] = $actual_sum['sum_discount'];
-            }
+        if(!empty($contract)){
+        	$contract->refreshBalance(); // Каждый раз при перезагрузки обновляем баланс договора
+        	$contract_rooms = $contract->getRooms();
+        	foreach ($contract_rooms as $room){
+	            $room_array = $room->getValues();
+	            $rooms[] = $room_array['number'];
+	        }
+	        $contract['rooms'] = $rooms;
+	        if($contract['has_dop']){
+	            $actual_sum = $contract->getActualSum();
+	            if($actual_sum){
+	                $contract['sum'] = $actual_sum['sum'];
+	                $contract['sum_discount'] = $actual_sum['sum_discount'];
+	            }
 
-        }
+	        }
 
-        $current_month = date('m');
-        $current_year = date('Y');
-        $already_exposed = false;
-        $invoices = $contract->getAllInvoices();
-        foreach ($invoices as $key => $value){
-            if(($value['period_month'] == $current_month) && ($value['period_year'] == $current_year)){
-                $already_exposed = true;
-            }
+	        $current_month = date('m');
+	        $current_year = date('Y');
+	        $already_exposed = false;
+	        $invoices = $contract->getAllInvoices();
+	        foreach ($invoices as $key => $value){
+	            if(($value['period_month'] == $current_month) && ($value['period_year'] == $current_year)){
+	                $already_exposed = true;
+	            }
+	        }
+	        $config = \RS\Config\Loader::byModule('kirova');
+	        $is_discount = false;
+	        $invoice_api = new \Kirova\Model\InvoiceApi();
+	        $last_invoice = $invoice_api->setFilter('period_month', $current_month)
+	                        ->setFilter('period_year', $current_year)
+	                        ->setFilter('renter_id', $contract['renter'])
+	                        ->getFirst();
+	        //Проверяем выставлен ли уже счет за текущий месяц
+	        $fake_balance = 0;
+	        if($already_exposed){
+	            // Проверяем условие - если текущий день уже после дня для представления скидки
+	           
+	            if(intval(date('d')) > $config['day_with_discount']){
+	                // Проверяем условие если баланс положительный то скидка все равно будет предоставлена
+	                if($contract['balance'] >= 0){
+	                    $is_discount = true;
+	                }else{
+	                    $is_discount = false;
+	                }
+	            }else{
+	                // Если счет за последний месяц выставлен и баланс отрицателен на сумму счета без скидки
+	                if(($contract['balance'] < 0)){
+	                    $is_discount = true;
+	                    $fake_balance = $contract['balance'] + ($last_invoice['sum'] - $last_invoice['discount_sum']);
+	                }
+	                if($contract['balance'] > 0){
+	                    $is_discount = true;
+	                }
+	                var_dump($fake_balance);
+	            }
+	        }	
         }
-        $config = \RS\Config\Loader::byModule('kirova');
-        $is_discount = false;
-        $invoice_api = new \Kirova\Model\InvoiceApi();
-        $last_invoice = $invoice_api->setFilter('period_month', $current_month)
-                        ->setFilter('period_year', $current_year)
-                        ->setFilter('renter_id', $contract['renter'])
-                        ->getFirst();
-        //Проверяем выставлен ли уже счет за текущий месяц
-        $fake_balance = 0;
-        if($already_exposed){
-            // Проверяем условие - если текущий день уже после дня для представления скидки
-           
-            if(intval(date('d')) > $config['day_with_discount']){
-                // Проверяем условие если баланс положительный то скидка все равно будет предоставлена
-                if($contract['balance'] >= 0){
-                    $is_discount = true;
-                }else{
-                    $is_discount = false;
-                }
-            }else{
-                // Если счет за последний месяц выставлен и баланс отрицателен на сумму счета без скидки
-                if(($contract['balance'] < 0)){
-                    $is_discount = true;
-                    $fake_balance = $contract['balance'] + ($last_invoice['sum'] - $last_invoice['discount_sum']);
-                }
-                if($contract['balance'] > 0){
-                    $is_discount = true;
-                }
-                var_dump($fake_balance);
-            }
-        }
+        
+        
+        
+        
 
         $this->view->assign([
             'renter' => $renter,

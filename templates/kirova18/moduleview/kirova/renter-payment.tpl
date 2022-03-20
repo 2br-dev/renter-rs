@@ -12,6 +12,7 @@
                             <li class="tab"><a href="#archive">Оконченные договоры</a></li>
                         </ul>
                         <div id="active">
+                            {if !empty($contract)}
                             <div class="contract">
                                 <p>Договор № {$contract['number']} от {$contract['date']|date_format: '%d.%m.%Y'}</p>
                                 <p><strong>Баланс:</strong>
@@ -50,8 +51,12 @@
                                 {/foreach}
                                 </tbody>
                             </table>
+                            {else}
+                                <p>Нет действующих договоров</p>
+                            {/if}
                         </div>
                         <div id="archive">
+                            {if !empty($archive_contracts)}
                             <ul class="collapsible">
                                 {foreach $archive_contracts as $contract}
                                     <li>
@@ -80,6 +85,9 @@
                                     </li>
                                 {/foreach}
                             </ul>
+                            {else}
+                                <p>Нет оконченных договоров</p>
+                            {/if}
                         </div>
 
                     </div>

@@ -40,6 +40,8 @@ class Contracts extends Front
         $info = [];
         $start_balance_inc = false; // Прибавлен ли к оплатам стартовый баланс
 
+
+
         $temp = 0;
         $current_month = date('m');
         $current_year = date('Y');
@@ -56,6 +58,7 @@ class Contracts extends Front
 
             if(!empty($payments)){
                 foreach($payments as $key_payment => $payment){
+                    
                     // echo "<pre>";
                     // var_dump(strtotime($invoice['period_year'].'-'.$invoice['period_month'].'-'.$last_day));
                     // var_dump(strtotime($payment['date']));
@@ -69,6 +72,7 @@ class Contracts extends Front
                     {
                         break;
                     }
+
                     // Увеличиваем $credit с учетом стартого баланса арендатора
                     if(!$start_balance_inc){
                         $credit = $payment['sum'] + $credit + $start_balance;
@@ -76,7 +80,7 @@ class Contracts extends Front
                     }else{
                         $credit += $payment['sum'];
                     }
-                    $info['payment_date'][] = $payment['date'];
+
                     // 1. Условие - дата оплаты соответствует льготному периоду оплаты
                     if (strtotime($payment['date']) < strtotime($invoice['finish_discount'])) {
 
@@ -99,9 +103,13 @@ class Contracts extends Front
                                 $trigger = true;
                             }
                         }
-                    }
-                    unset($payments[$key_payment]);
 
+                    }
+                    
+                    unset($payments[$key_payment]);
+                    // $info['trigger'][] = $trigger;
+                    // $info['trigger1'][] = strtotime($payment['date']) - strtotime($invoice['finish_discount']);
+                    // $info['payments'][] = $payment['date'].' - '.$invoice['finish_discount'];
                     // ????
                     if($payment['sum'] >= $invoice['sum'] && !$trigger ){
                         break;
@@ -109,7 +117,8 @@ class Contracts extends Front
                     if($trigger && $payment['sum'] >= $invoice['discount_sum']){
                         break;
                     }
-//                    break;
+                   // break;
+
                 }
             }else{
                 // Увеличиваем $credit с учетом стартого баланса арендатора
@@ -133,7 +142,6 @@ class Contracts extends Front
             }
             if($trigger){
                 $debit += $invoice['discount_sum'];
-//                $info[$invoice['period_month']] = $invoice['discount_sum'];
                 $invoice['is_discount'] = 1;
             }
             else {
@@ -146,11 +154,12 @@ class Contracts extends Front
                 }
             }
             
-           // $info['saldo'][] = $saldo.' - '.$credit. ' - ' .$debit;
-           // $info['trigger'][] = $trigger;
-           // $info['finish'][] = $invoice['period_month'] .' - '. $invoice['finish_discount'];
-           // $info['start_balance'] = $start_balance;
+           
             $saldo = $credit - $debit;
+            $info['saldo'][] = $saldo.' - '.$credit. ' - ' .$debit;
+           
+           $info['finish'][] = $invoice['period_month'] .' - '. $invoice['finish_discount'];
+           $info['start_balance'] = $start_balance;
             $trigger = false;
             $invoice->update();
 

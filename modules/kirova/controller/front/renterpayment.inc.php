@@ -20,8 +20,8 @@ class RenterPayment extends Front
          */
         $contract = $contract_api->setFilter('renter', $current_user['renter_id'])->setFilter('status', 0, '<>')->getFirst();
         $archive_contracts = $contract_api->clearFilter()->setFilter('renter', $current_user['renter_id'])->setFilter('status', 0)->getList();
-        $payments = $contract->getAllPayments();
-        $invoices = $contract->getAllInvoices();
+        $payments = !empty($contract) ? $contract->getAllPayments() : [];
+        $invoices = !empty($contract) ? $contract->getAllInvoices() : [];
 
         $current_month = date('m');
         $current_year = date('Y');
@@ -62,12 +62,13 @@ class RenterPayment extends Front
                 }
             }
         }
-
-        foreach ($archive_contracts as $key => $value){
-            /**
-             * @var \Kirova\Model\Orm\Contract $value
-             */
-            $archive_contracts[$key]['payments'] = $value->getAllPayments();
+        if(!empty($archive_contracts)){
+            foreach ($archive_contracts as $key => $value){
+                /**
+                 * @var \Kirova\Model\Orm\Contract $value
+                 */
+                $archive_contracts[$key]['payments'] = $value->getAllPayments();
+            }
         }
 
         $this->view->assign('user', $current_user);

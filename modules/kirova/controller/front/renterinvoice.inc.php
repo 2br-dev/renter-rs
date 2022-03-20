@@ -20,7 +20,7 @@ class RenterInvoice extends Front
          */
         $contract = $contract_api->setFilter('renter', $current_user['renter_id'])->setFilter('status', 0, '<>')->getFirst();
         $archive_contracts = $contract_api->clearFilter()->setFilter('renter', $current_user['renter_id'])->setFilter('status', 0)->getList();
-        $invoices = $contract->getAllInvoices();
+        $invoices = !empty($contract) ? $contract->getAllInvoices() : [];
         $current_date_timestamp = strtotime(date('Y-m-d'));
         $current_month = date('m');
         $current_year = date('Y');
@@ -38,7 +38,7 @@ class RenterInvoice extends Front
             /**
              * @var \Kirova\Model\Orm\Contract $archive_contract
              */
-            $archive_invoices = $archive_contract->getAllInvoices();
+            $archive_invoices = !empty($archive_contract) ? $archive_contract->getAllInvoices() : [];
             $archive_contracts[$key]['invoices'] = $archive_invoices;
             foreach ($archive_invoices as $key_invoice => $invoice){
                 /**
